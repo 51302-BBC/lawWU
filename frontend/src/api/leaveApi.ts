@@ -15,6 +15,7 @@ import {
 } from '../domain/rules'
 import type { Balance, Employee, Holiday, LeaveRequest, LeaveType, LeaveTypeId } from '../domain/types'
 import { ANNUAL_DAYS, EMPLOYEES, HOLIDAYS, HOLIDAY_SET, LEAVE_TYPES } from '../mock/seed'
+import { resetAttendance } from './attendanceApi'
 import { delay } from './delay'
 import { readState, resetState, writeState } from './store'
 
@@ -230,4 +231,5 @@ export function getBalancesOf(employeeIds: string[], year: number = thisYear()):
 
 export function resetDemoData(): void {
   resetState()
+  resetAttendance()
 }

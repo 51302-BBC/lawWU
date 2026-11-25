@@ -11,6 +11,7 @@ import { Icon } from '../../ui/Icon'
 import { formatDateLong, formatRange, givenName, hoursLabel, relativeDay } from '../shared/format'
 import { requestJourney, waitingSentence } from '../shared/journey'
 import { ApplySheet } from './ApplySheet'
+import { PunchCard } from './PunchCard'
 import { RequestDetail } from './RequestDetail'
 import './dashboard.css'
 
@@ -178,6 +179,8 @@ export function DashboardPage() {
           申請請假
         </Button>
       </header>
+
+      <PunchCard />
 
       {d ? (
         <BalanceStrip balances={d.balances} types={d.types} onAll={() => setShowAll(true)} />

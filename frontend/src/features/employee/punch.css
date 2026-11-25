@@ -1,0 +1,383 @@
+/* ───────── 上下班打卡 — a small daily ritual ───────── */
+.punch {
+  --seal: #c4573f;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-areas:
+    'head clock act'
+    'track track track'
+    'week week week';
+  align-items: center;
+  gap: 28px 40px;
+  margin: 8px 0 56px;
+  padding: 32px 36px 28px;
+  border: 1px solid var(--separator);
+  border-radius: var(--r-lg);
+  background: var(--bg-elevated);
+  overflow: hidden;
+}
+
+.punch__head {
+  grid-area: head;
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+.punch__eyebrow {
+  font-size: var(--t-foot);
+  font-weight: 700;
+  letter-spacing: var(--track-caps);
+  color: var(--label-3);
+}
+.punch__title {
+  font-size: var(--t-title1);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.punch__sub {
+  font-size: var(--t-sub);
+  color: var(--label-2);
+}
+
+/* the clock is company, not the subject: quiet, beside the title */
+.punch__clock {
+  grid-area: clock;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--label-3);
+  letter-spacing: 0.02em;
+}
+.punch__clock small {
+  margin-left: 4px;
+  font-size: 15px;
+  color: var(--label-4);
+}
+
+.punch__act {
+  grid-area: act;
+  min-width: 176px;
+  justify-self: end;
+}
+.punch__bye {
+  color: var(--label-2);
+  font-size: var(--t-sub);
+}
+
+/* ───────── Hold button ───────── */
+.hold-wrap {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+.hold {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  width: 176px;
+  height: 64px;
+  padding: 0 20px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-md);
+  background: transparent;
+  color: var(--label);
+  font-size: var(--t-callout);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  overflow: hidden;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  transition: border-color var(--dur), color 200ms var(--ease-out);
+}
+.punch[data-phase='before'] .hold {
+  border-color: var(--ink);
+}
+.hold:hover {
+  border-color: var(--ink);
+}
+/* the fill rises while held, and falls back quickly when let go */
+.hold__fill {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--ink);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 220ms var(--ease-out);
+}
+.hold[data-holding] .hold__fill {
+  transform: scaleY(1);
+  transition: transform var(--hold-ms) cubic-bezier(0.3, 0, 0.6, 1);
+}
+.hold[data-holding] {
+  color: var(--ground);
+  transition: color calc(var(--hold-ms) * 0.5) linear calc(var(--hold-ms) * 0.35);
+}
+.hold[aria-busy] {
+  opacity: 0.6;
+}
+.hold__hint {
+  font-size: 12px;
+  color: var(--label-4);
+  letter-spacing: 0.04em;
+}
+
+/* ───────── Day track ───────── */
+.track {
+  grid-area: track;
+  display: grid;
+  gap: 8px;
+}
+.track__rail {
+  position: relative;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bg-fill);
+}
+.track__band {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: 3px;
+  background: var(--bg-fill-strong);
+}
+.track__span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: 3px;
+  background: var(--ink);
+  transition: width 600ms var(--ease-out);
+}
+.track__span[data-live] {
+  background: linear-gradient(90deg, var(--ink), color-mix(in srgb, var(--ink) 70%, transparent));
+}
+.track__pin {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--bg-elevated);
+  border-radius: 50%;
+  background: var(--ink);
+  transform: translate(-50%, -50%);
+}
+.track__now {
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--green-vivid);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--green-vivid) 50%, transparent);
+  animation: breathe 2.8s ease-in-out infinite;
+}
+@keyframes breathe {
+  50% {
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--green-vivid) 0%, transparent);
+  }
+}
+.track__ticks {
+  position: relative;
+  height: 16px;
+  font-size: 12px;
+  color: var(--label-4);
+}
+.track__ticks span {
+  position: absolute;
+  transform: translateX(-50%);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ───────── This week ───────── */
+.week {
+  grid-area: week;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 20px 0 0;
+  border-top: 1px solid var(--separator);
+  list-style: none;
+}
+.week__day {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas: 'mark name' 'mark time';
+  align-items: center;
+  gap: 2px 10px;
+  min-width: 0;
+}
+.week__mark {
+  grid-area: mark;
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+}
+.week__name {
+  grid-area: name;
+  font-size: var(--t-foot);
+  color: var(--label-3);
+}
+.week__time {
+  grid-area: time;
+  font-size: var(--t-foot);
+  color: var(--label-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.week__to::before {
+  content: '–';
+}
+.week__day[data-state='done'] .week__mark {
+  border-color: var(--ink);
+  background: var(--ink);
+}
+.week__day[data-state='working'] .week__mark {
+  border-color: var(--green-vivid);
+  background: var(--green-vivid);
+}
+.week__day[data-state='today'] .week__mark {
+  border-color: var(--ink);
+}
+.week__day[aria-current='date'] .week__name {
+  color: var(--label);
+  font-weight: 600;
+}
+.week__day[data-state='missed'] .week__time,
+.week__day[data-state='ahead'] .week__name {
+  color: var(--label-4);
+}
+
+/* ───────── The moment: a seal stamps the day ───────── */
+.ceremony {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 24px;
+  background: var(--bg-elevated);
+  cursor: pointer;
+  animation: ceremony-in 360ms var(--ease-out) both, ceremony-out 600ms ease 3600ms both;
+}
+@keyframes ceremony-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes ceremony-out {
+  to {
+    opacity: 0;
+  }
+}
+.seal {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  flex: none;
+  width: 76px;
+  height: 76px;
+  border: 3px solid var(--seal);
+  border-radius: 8px;
+  color: var(--seal);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.05;
+  transform: rotate(-4deg);
+  animation: stamp 520ms cubic-bezier(0.2, 0.9, 0.3, 1.15) 120ms both;
+}
+@keyframes stamp {
+  0% {
+    opacity: 0;
+    transform: scale(1.9) rotate(-10deg);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(-4deg);
+  }
+}
+.ceremony__words {
+  display: grid;
+  gap: 8px;
+  max-width: 520px;
+}
+.ceremony__title {
+  font-family: var(--font-display);
+  font-size: var(--t-title1);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  animation: rise 520ms var(--ease-out) 380ms both;
+}
+.ceremony__line {
+  color: var(--label-2);
+  font-size: var(--t-callout);
+  animation: rise 520ms var(--ease-out) 540ms both;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* ───────── Narrow ───────── */
+@media (max-width: 720px) {
+  .punch {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      'head clock'
+      'act act'
+      'track track'
+      'week week';
+    gap: 22px 16px;
+    padding: 24px 20px 20px;
+    margin-bottom: 40px;
+  }
+  .punch__clock {
+    align-self: start;
+    font-size: 22px;
+  }
+  .punch__act,
+  .hold {
+    width: 100%;
+    justify-self: stretch;
+  }
+  .week {
+    gap: 6px;
+  }
+  .week__day {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'mark' 'name' 'time';
+    justify-items: start;
+  }
+  .week__time {
+    display: grid;
+    font-size: 12px;
+    white-space: normal;
+  }
+  .week__to::before {
+    content: none;
+  }
+  .track__minor {
+    display: none;
+  }
+  .ceremony {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+}
