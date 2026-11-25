@@ -1,55 +1,60 @@
-/* ───────── Balance strip ───────── */
-/* widget-style tiles (iOS 27 widgets: solid surface, concentric 26px corners) */
+/* ───────── Balance strip — mission stats: huge numerals over tracked caps ───────── */
 .balances.group {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr auto;
-  gap: 12px;
-  background: transparent;
-  box-shadow: none;
-  border-radius: 0;
-  overflow: visible;
+  grid-template-columns: 1.5fr 1fr 1fr auto;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
 }
 .bal {
   display: grid;
   align-content: start;
-  gap: 6px;
-  padding: 20px 22px 18px;
+  gap: 8px;
+  padding: 28px 28px 26px;
   min-width: 0;
-  border-radius: var(--r-xl);
-  background: var(--bg-elevated);
-  box-shadow: var(--shadow-raise);
 }
-.bal--hero .bal__label {
-  color: var(--accent);
-  font-weight: 650;
+.bal + .bal {
+  border-left: 1px solid var(--separator);
+}
+.bal:first-child {
+  padding-left: 0;
 }
 .bal__label {
-  font-size: var(--t-sub);
+  order: 2;
+  font-size: var(--t-foot);
+  font-weight: 700;
+  letter-spacing: var(--track-caps);
   color: var(--label-3);
-  font-weight: 500;
+}
+.bal--hero .bal__label {
+  color: var(--label);
 }
 .bal__value {
+  order: 1;
   font-family: var(--font-display);
-  font-size: 44px;
-  font-weight: 750;
-  letter-spacing: -0.035em;
-  line-height: 1.05;
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1;
 }
 .bal__value--sm {
-  font-size: 28px;
-  letter-spacing: -0.02em;
+  font-size: 40px;
 }
 .bal__words {
+  order: 3;
   font-size: var(--t-sub);
   color: var(--label-2);
-  margin-top: -2px;
+}
+.bal .meter {
+  order: 4;
 }
 .bal__legend {
+  order: 5;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 4px 6px;
+  gap: 4px 8px;
   font-size: var(--t-foot);
+  letter-spacing: 0.06em;
   color: var(--label-3);
 }
 .bal__total {
@@ -58,100 +63,106 @@
 .dot {
   width: 8px;
   height: 8px;
-  border-radius: 50%;
-  margin-left: 4px;
+  margin-left: 6px;
 }
 .dot:first-child {
   margin-left: 0;
 }
 .dot--used {
-  background: var(--accent-vivid);
+  background: #fff;
 }
 .dot--pending {
   background: var(--orange-vivid);
 }
+/* a 2px trajectory line */
 .meter {
   display: flex;
-  gap: 2px;
-  height: 10px;
-  margin: 10px 0 4px;
-  border-radius: 999px;
-  background: var(--bg-fill);
-  overflow: hidden;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.06);
+  height: 2px;
+  margin: 14px 0 6px;
+  background: var(--separator);
 }
 .meter__used {
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--accent-vivid), color-mix(in srgb, var(--accent-vivid) 75%, #fff));
+  background: #fff;
 }
 .meter__pending {
-  border-radius: 999px;
-  background: repeating-linear-gradient(
-    -45deg,
-    var(--orange-vivid) 0 4px,
-    color-mix(in srgb, var(--orange-vivid) 50%, transparent) 4px 8px
-  );
+  background: var(--orange-vivid);
 }
 .bal--more {
   display: flex;
   align-items: center;
-  align-content: center;
-  gap: 4px;
-  padding: 0 22px;
+  align-self: stretch;
+  gap: 6px;
+  padding: 0 0 0 28px;
   border: 0;
-  background: var(--accent-tint);
-  box-shadow: none;
-  color: var(--accent);
-  font-size: var(--t-sub);
-  font-weight: 600;
+  border-left: 1px solid var(--separator);
+  background: transparent;
+  color: var(--label-2);
+  font-size: var(--t-foot);
+  font-weight: 700;
+  letter-spacing: var(--track-caps);
   white-space: nowrap;
-  transition: background var(--dur), transform 160ms var(--ease-lens);
+  transition: color var(--dur);
 }
 .bal--more:hover {
-  background: color-mix(in srgb, var(--accent-vivid) 18%, transparent);
+  color: var(--label);
 }
-.bal--more:active {
-  transform: scale(0.97);
+.bal--more svg {
+  transition: transform var(--dur) var(--ease-out);
+}
+.bal--more:hover svg {
+  transform: translateX(4px);
 }
 @media (max-width: 900px) {
   .balances.group {
     grid-template-columns: 1fr 1fr;
   }
+  .bal {
+    padding: 22px 0;
+  }
   .bal--hero {
     grid-column: 1 / -1;
   }
+  .bal + .bal {
+    border-left: 0;
+    border-top: 1px solid var(--separator);
+  }
+  .bal--hero + .bal + .bal {
+    border-left: 1px solid var(--separator);
+    padding-left: 20px;
+  }
   .bal--more {
     grid-column: 1 / -1;
-    justify-content: center;
-    padding: 16px;
+    border-left: 0;
+    border-top: 1px solid var(--separator);
+    padding: 18px 0;
   }
 }
 
 /* ───────── In-flight rows ───────── */
 .flight {
-  gap: 16px;
-  padding: 16px;
+  gap: 20px;
+  padding: 20px 4px;
 }
 /* Calendar-icon date tile */
 .datechip {
   display: grid;
   justify-items: center;
   flex: none;
-  width: 54px;
-  padding: 6px 0 8px;
-  border-radius: var(--r-md);
-  background: var(--bg-inset);
+  width: 58px;
+  padding: 7px 0 9px;
+  border: 1px solid var(--rule);
   line-height: 1.1;
 }
 .datechip__m {
   font-size: 12px;
   font-weight: 700;
-  color: var(--red);
+  letter-spacing: 0.12em;
+  color: var(--label-3);
 }
 .datechip__d {
   font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 28px;
+  font-weight: 700;
 }
 .flight__main {
   display: grid;
@@ -170,7 +181,7 @@
 .flight__waiting {
   font-size: var(--t-sub);
   color: var(--label-2);
-  font-weight: 500;
+  font-weight: 600;
 }
 .flight__journey {
   flex: none;
@@ -213,6 +224,21 @@
   white-space: nowrap;
 }
 .allbal__num strong {
-  font-size: var(--t-headline);
+  font-family: var(--font-display);
+  font-size: 22px;
   color: var(--label);
+}
+
+/* The page header's rule is the strip's top rule: one line, not two. */
+.page-head + .balances.group {
+  border-top: 0;
+  margin-top: -40px;
+}
+@media (max-width: 520px) {
+  .bal__value {
+    font-size: 52px;
+  }
+  .bal__value--sm {
+    font-size: 30px;
+  }
 }

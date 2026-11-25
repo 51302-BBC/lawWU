@@ -1,4 +1,4 @@
-/** Authored line icons in one stroke weight (SF Symbols–like). */
+/** Authored line icons in one stroke weight (square caps to match the v3 idiom). */
 const paths = {
   house: 'M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5.5h-5V20H5a1 1 0 0 1-1-1z',
   list: 'M9 6.5h11M9 12h11M9 17.5h11M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01',
@@ -19,6 +19,7 @@ const paths = {
   paperclip: 'M19 11.5l-6.8 6.8a4.5 4.5 0 0 1-6.4-6.4l7.4-7.4a3 3 0 0 1 4.3 4.3l-7.3 7.3a1.5 1.5 0 0 1-2.1-2.1l6.6-6.6',
   person: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4.5 20.5c.8-3.8 3.8-6 7.5-6s6.7 2.2 7.5 6',
   undo: 'M9 14 4.5 9.5 9 5M4.5 9.5H14a5.5 5.5 0 0 1 0 11h-3',
+  menu: 'M4 8h16M4 16h16',
 } as const
 
 export type IconName = keyof typeof paths
@@ -38,8 +39,8 @@ export function Icon({ name, size = 20, strokeWidth = 1.75, className }: {
       fill="none"
       stroke="currentColor"
       strokeWidth={strokeWidth}
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      strokeLinecap="square"
+      strokeLinejoin="miter"
       aria-hidden="true"
       focusable="false"
     >

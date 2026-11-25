@@ -1,196 +1,125 @@
 ---
 name: 事務所請假
-description: Leave management for a small accounting firm in the current Apple idiom (Liquid Glass, iOS 27 / macOS 27)
+description: Leave management for a small accounting firm in a mission-control idiom after SpaceX's web design (v3, branch design/spacex)
 colors:
-  accent-vivid: "#0088ff"
-  accent: "#0066cc"
-  accent-fill: "#0071e3"
-  accent-dark-text: "#4da3ff"
-  window-ground: "#f2f2f7"
-  window-ground-dark: "#000000"
-  surface: "#ffffff"
-  surface-dark: "#1c1c1e"
-  glass: "rgba(255, 255, 255, 0.62)"
-  glass-dark: "rgba(40, 40, 44, 0.58)"
-  label: "#1c1c1e"
-  label-secondary: "#3c3c43"
-  label-tertiary: "#636366"
-  label-quaternary: "#8e8e93"
-  green-vivid: "#34c759"
-  green-text: "#1d7a34"
-  orange-vivid: "#ff8d28"
-  orange-text: "#b04a00"
-  red-vivid: "#ff383c"
-  red-text: "#c8001e"
-  red-fill: "#d70015"
-  purple-vivid: "#cb30e0"
-  purple-text: "#8a2ea3"
+  ground: "#000000"
+  surface: "#0a0a0b"
+  inset: "#121214"
+  label: "#ffffff"
+  label-secondary: "rgba(255,255,255,0.82)"
+  label-tertiary: "rgba(255,255,255,0.64)"
+  label-quaternary: "rgba(255,255,255,0.5)"
+  rule: "rgba(255,255,255,0.28)"
+  separator: "rgba(255,255,255,0.16)"
+  accent: "#ffffff"
+  on-accent: "#000000"
+  green: "#3ddc84"
+  orange: "#ffa31a"
+  red: "#ff4d42"
+  red-fill: "#d92d20"
+  purple: "#b98cff"
 typography:
-  large-title:
-    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif"
-    fontSize: "34px"
-    fontWeight: 750
-    lineHeight: 1.12
-    letterSpacing: "-0.03em"
-  hero-number:
-    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang TC', sans-serif"
-    fontSize: "44px"
-    fontWeight: 750
-    letterSpacing: "-0.035em"
-  title3:
-    fontSize: "20px"
+  display:
+    fontFamily: "'D-DIN', 'Bahnschrift', 'DIN Alternate', 'Barlow', 'Helvetica Neue', Arial, 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif"
     fontWeight: 700
-    letterSpacing: "-0.02em"
+    letterSpacing: "0.06em"
+    textTransform: "uppercase"
+  stat-number:
+    fontSize: "64px"
+    fontWeight: 700
+    lineHeight: 1
+  caps-label:
+    fontSize: "13px"
+    fontWeight: 700
+    letterSpacing: "0.14em"
+    textTransform: "uppercase"
   body:
-    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif"
     fontSize: "17px"
     fontWeight: 400
-    lineHeight: 1.47
-    letterSpacing: "-0.01em"
-  subhead:
-    fontSize: "15px"
-  footnote:
-    fontSize: "13px"
-    fontWeight: 600
+    lineHeight: 1.5
 rounded:
-  sm: "10px"
-  md: "14px"
-  lg: "20px"
-  xl: "26px"
-  window: "32px"
-  capsule: "999px"
+  all: "0px"
 spacing:
-  window-inset: "10px"
-  row-x: "18px"
-  row-min: "58px"
-  section: "40px"
+  bar-height: "84px (68px solid)"
+  content-max: "1160px"
+  section: "64px"
+  row-min: "64px"
 components:
-  button-glass-prominent:
-    backgroundColor: "{colors.accent-fill}"
-    textColor: "{colors.surface}"
-    rounded: "{rounded.capsule}"
-    height: "40px"
-    padding: "0 18px"
-  button-glass:
-    backgroundColor: "{colors.glass}"
-    textColor: "{colors.label}"
-    rounded: "{rounded.capsule}"
-    height: "40px"
-  surface:
-    backgroundColor: "{colors.surface}"
-    rounded: "{rounded.xl}"
-  sidebar:
-    backgroundColor: "{colors.glass}"
-    rounded: "{rounded.xl}"
-    width: "248px"
+  button-primary:
+    backgroundColor: "{colors.accent}"
+    textColor: "{colors.on-accent}"
+    rounded: "{rounded.all}"
+    height: "44px / 54px"
+  button-outline:
+    border: "2px solid currentColor"
+    hover: "white fill rises from the bottom edge, text turns black"
+  status:
+    border: "1px solid currentColor"
+    marker: "7px square in the state color"
   sheet:
-    rounded: "{rounded.window}"
-  input:
-    backgroundColor: "{colors.surface}"
-    rounded: "{rounded.md}"
-    height: "50px"
-    padding: "11px 16px"
-  status-pill:
-    rounded: "{rounded.capsule}"
-    height: "26px"
+    placement: "full-height panel from the right, 660px max"
 ---
 
-# Design System: 事務所請假
+# Design System: 事務所請假 (v3)
 
 ## Overview
 
-**Creative North Star: "Glass Over the Itinerary"**
+**Creative North Star: "Flight Manifest"**
 
-Every leave request is a trip with stops: you → 林主管 → 王經理. v2 places that itinerary under a Liquid Glass layer, as iOS 27 and macOS 27 do: navigation and actions float as translucent glass above solid, legible content. The chrome refracts a faint ambient color field; the content never sits on glass, so the firm's older users read every number on a solid surface.
+Every leave request is a mission with waypoints: you → 林主管 → 王經理. v3 borrows SpaceX's web language — black ground, white type, tracked capitals, square edges, hairline rules — as a visual idiom only: no logo, no company name, no imagery. Mission control is quiet so the one thing in motion, a request moving toward approval, is the only thing lit.
 
-Restrained and current: one blue, the iOS 26 system colors reserved for request state, capsule controls, concentric corners (window 32 → surfaces 26 → fields 14), and one signature motion — the liquid lens that slides to whatever is selected.
+Earlier versions: v1 `v1-classic` tag (2018 iOS); v2 Liquid Glass (branch `design/liquid-glass`, saved as the stash entry "v2 liquid-glass working state").
 
-**Key Characteristics:**
-- Glass only on chrome: floating sidebar / tab bar, sheet, toolbar buttons, menus, toasts.
-- Solid content surfaces with 26px corners, no hairline borders; widgets instead of a single grouped strip.
-- Capsules for every control; the selected item is a raised lens that slides between options.
-- iOS 26 system colors as vivid fills, with darker text-safe shades for any colored text.
-- Reduce Transparency and Reduce Motion are honored: glass becomes solid, the lens stops gliding.
+**Key characteristics**
+- Black ground, no cards: content is separated by hairline rules and space.
+- White is the only accent. Color appears only as request state, as a small square marker plus words.
+- Square corners on everything. Buttons are outlined rectangles whose white fill rises on hover; the main action is solid white.
+- Numbers are the heroes: remaining hours at 64px over small tracked labels.
+- Chrome is a top bar (transparent over the page, solid on scroll) and full-height right panels.
 
 ## Colors
 
-Restrained: neutral ground and surfaces, one accent, a four-color state vocabulary.
+- **Ground** #000, **Surface** #0a0a0b (panels), **Inset** #121214 (callouts, fact cells). Depth on black comes from these steps and rules, never shadow.
+- **Text** white and three steps (82%, 64%, 50%); every step is ≥4.5:1 on black.
+- **Rules** 28% white for structure (page header, list tops), 16% for separators between rows.
+- **State** green #3ddc84 approved · amber #ffa31a pending (its marker blinks slowly) · red #ff4d42 returned / today / badges · violet #b98cff cancel requests.
 
-### Primary
-- **System Blue** (vivid #0088ff for marks and icons; #0066cc for text; #0071e3 for filled buttons so white text stays ≥4.5:1): primary actions, selection, focus, nav icons, used-hours meters.
-
-### Neutral
-- **Window Ground** (#f2f2f7 / dark #000): page ground, carrying faint blue / lilac / teal blooms (≤11% alpha) for the glass to refract.
-- **Surface** (#ffffff / dark #1c1c1e): every content container.
-- **Glass** (white 62% / dark #28282c 58%, blur 26px, saturate 190%): chrome only.
-- **Label → Quaternary** (#1c1c1e, #3c3c43, #636366, #8e8e93): text hierarchy; quaternary never for readable text.
-
-### State
-- **Green** (#34c759 fill / #1d7a34 text): approved, completed journey stops.
-- **Orange** (#ff8d28 fill / #b04a00 text): pending, the pulsing current stop, busy-season notices.
-- **Red** (#ff383c fill / #c8001e text / #d70015 solid behind white): returned, errors, holidays, badges, today.
-- **Purple** (#cb30e0 fill / #8a2ea3 text): cancel requests.
-
-### Named Rules
-**The Glass Is Chrome Rule.** Glass is for things that float above content (navigation, toolbars, sheets, menus, toasts). Content — balances, rows, cards, forms — always sits on a solid surface.
-**The Two Shades Rule.** Each system color has a vivid shade for fills and dots and a darker shade for text. Never set text in the vivid shade.
+**The One Light Rule.** White is the accent. A second accent color is never added; state colors mean state only.
 
 ## Typography
 
-**Font:** the platform system stack (SF Pro / PingFang TC / Noto Sans TC / Microsoft JhengHei). One family; hierarchy by size and weight.
+One family: Bahnschrift (Windows' built-in DIN) / D-DIN / DIN Alternate, falling back to the system CJK fonts. Hierarchy comes from size, weight and tracking.
+- Page titles 40px (30px mobile), 700, tracked 0.06em, uppercase for Latin.
+- Stat numerals 64px / 40px, 700.
+- Caps labels 13px, 700, tracked 0.14em: section titles, field labels, nav, buttons.
+- Body 17px; secondary 15px.
 
-### Hierarchy
-- **Large Title** (750, 34px, -0.03em): page titles and the greeting; 32px on mobile.
-- **Hero Number** (750, 44px / 28px): remaining hours in widgets and the apply-sheet tally; tabular numerals.
-- **Title 3** (700, 20px): section headers.
-- **Headline / Body** (600 / 400, 17px): row titles / default text.
-- **Subhead / Footnote** (15px / 13px 600): secondary lines, field labels.
-
-### Named Rules
-**The Hours Are Words Rule.** Quantities always carry their unit in plain words: 「24 小時」「等於 3 天」.
+**The Hours Are Words Rule.** Quantities always carry their unit: 「120 小時」「等於 15 天」.
 
 ## Layout
 
-Desktop: the sidebar floats 10px inside the window (248px wide, 26px radius); content is centered in the remaining width (max ~1080px), 44px from the top. Sections are 40px apart. Below 760px the sidebar becomes a floating glass tab-bar capsule 12px above the bottom edge, with a separate 64px round glass-prominent ＋ (申請請假) beside it; the avatar becomes a small glass circle top-right; header 申請 buttons hide (`.only-desktop`).
-
-## Elevation & Depth
-
-Two layers. Content surfaces rest with a barely-there raise (`0 1px 2px rgba(20,30,60,.04), 0 4px 16px -6px rgba(20,30,60,.08)`). The glass layer floats: specular top rim (`inset 0 1px 0 rgba(255,255,255,.95)`), 0.5px edge, and a soft cool shadow (`0 12px 32px -12px rgba(30,40,80,.22)`). Sheets and menus add the float shadow (`0 24px 60px -16px rgba(20,30,60,.3)`).
-
-## Shapes
-
-Concentric corners: window/sheet 32px → surfaces and widgets 26px → type tiles 20px → fields 14px → small chips 10px. Every control is a capsule. Avatars are circles with a soft top highlight.
+Top bar 84px (68px once scrolled), padding 40px. Content max 1160px, starting 140px from the top. Sections 64px apart. The page header carries a 28% rule under it that doubles as the stat strip's top rule. Below 960px the nav becomes a full-height panel from the right with numbered items (01–05) and the apply button.
 
 ## Components
 
-### Buttons
-- **Glass-prominent:** accent fill #0071e3, white text, inner specular rim, colored soft shadow. Main action per view.
-- **Glass:** translucent glass with rim, for controls that sit on the glass layer (sheet 取消/完成, icon buttons).
-- **Tinted / Gray / Plain / Danger:** secondary actions on solid surfaces.
-- **States:** hover deepens; press scales to 0.96 on the lens curve; disabled 38%.
-
-### Segmented control & navigation — the liquid lens
-- Capsule track; the selected option is a raised white lens that slides (340–380ms, `cubic-bezier(.3,.9,.25,1)`) to the new option. The sidebar and tab bar use the same lens, tinted with System Blue.
-
-### Surfaces and rows
-- 26px solid surfaces; rows ≥58px with 18px padding and hairlines inset 18px (66px after an avatar).
-
-### Sheet
-- Floating glass panel with 32px corners on all sides, inset 8px from the screen on mobile, centered on desktop. Glass capsule bar buttons; the primary action lives in a floating glass footer capsule.
-
-### Journey (signature)
-- Avatars on a 5px capsule rail; completed segments glow green; the current stop has an orange ring pulsing outward; the viewer is labeled 「你」.
+- **Buttons:** square; outline with a rising white fill on hover (320ms, `cubic-bezier(.45,0,.1,1)`); primary solid white with black text; plain buttons underline on hover.
+- **Nav:** tracked caps; one white underline travels to the active item (520ms).
+- **Segmented:** tabs on a rule; a 2px white underline slides to the selected tab.
+- **Status:** 1px outlined box, tracked caps, a 7px square marker.
+- **Journey (signature):** square monograms on a dashed path; completed legs turn solid green; the current stop is held by amber corner brackets that breathe; the viewer is 「你」.
+- **Sheet:** a full-height panel sliding in from the right, ruled header and footer.
+- **Login hero (stageshow):** `features/auth/LeaveDemo.tsx`, built from the skill's `dark-hero` gold: a request lands in 我的紀錄 and turns 審核中 → 已核准 on the same pill, its approver waypoint fills green; 2s hold; the row closes and resets unseen. The poster (shown under reduced motion) is the approved frame. See `REHEARSAL.md` beside it.
 
 ## Do's and Don'ts
 
-### Do:
-- **Do** keep glass to chrome and content on solid surfaces.
-- **Do** use capsules for every control and concentric radii for nested containers.
-- **Do** show the Journey wherever a request appears and say in words who it waits on.
-- **Do** keep body text ≥16px and controls ≥40px tall.
+**Do**
+- Keep content on the black ground with rules; use space, not boxes.
+- Use tracked small caps for labels and huge numerals for the hours.
+- Keep body text ≥16px and controls ≥44px tall.
+- Show the journey wherever a request appears.
 
-### Don't:
-- **Don't** put readable text directly on the ambient bloom or on glass without a solid backing behind long text.
-- **Don't** set text in the vivid system colors; use the text shades.
-- **Don't** return to flat gray grouped lists with hairline-bordered sidebars (that is v1, tag `v1-classic`).
-- **Don't** add a second accent color.
+**Don't**
+- Use SpaceX's name, logo, typeface files or photography. This is an idiom, not a copy.
+- Round a corner or add a drop shadow.
+- Use a second accent color or set long text in a state color.
+- Animate without a cause: the only ambient motion is the pending marker and the current waypoint.

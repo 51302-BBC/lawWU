@@ -1,71 +1,98 @@
+/* ───────── Login — a black hero beside a ruled sign-in column ───────── */
 .login {
   min-height: 100dvh;
   display: grid;
-  place-items: center;
-  align-content: center;
-  gap: 24px;
-  padding: 48px 20px;
+  grid-template-columns: minmax(0, 1fr) 480px;
+  background: #000;
 }
-.login__panel {
-  width: 100%;
-  max-width: 440px;
+
+.login__hero {
+  position: relative;
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  padding: 72px 0 0 64px;
+  overflow: hidden;
+}
+.login__eyebrow {
+  display: flex;
   align-items: center;
-  padding: 40px 32px 28px;
-  border-radius: var(--r-window);
-  text-align: center;
-  background: var(--glass);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  box-shadow: var(--glass-specular), 0 0 0 0.5px var(--glass-edge), var(--shadow-float);
+  gap: 14px;
+  font-size: var(--t-foot);
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  color: var(--label-2);
 }
-@media (max-width: 480px) {
-  .login__panel {
-    padding: 32px 20px 22px;
-  }
+.login__eyebrow i {
+  width: 1px;
+  height: 14px;
+  background: var(--rule-strong);
 }
-.login__icon {
-  display: grid;
-  place-items: center;
-  width: 76px;
-  height: 76px;
-  border-radius: 20px;
-  background: linear-gradient(160deg, #3aa0ff 0%, #0071e3 55%, #0058c8 100%);
-  color: #fff;
-  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, 0.5), inset 0 -1px 0 rgba(0, 0, 0, 0.15),
-    0 12px 28px -10px rgba(0, 113, 227, 0.65);
-  margin-bottom: 22px;
+.login__headline {
+  margin-top: 28px;
+  font-family: var(--font-display);
+  font-size: clamp(40px, 4.4vw, 64px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: 0.04em;
+}
+.login__lede {
+  max-width: 34em;
+  margin-top: 20px;
+  font-size: var(--t-body);
+  color: var(--label-3);
+}
+.login__stage {
+  margin-top: auto;
+  padding-top: 40px;
+  /* the stage fills the column, so the window bleeds off its right and bottom edges */
+  margin-left: -40px;
+  margin-bottom: -48px;
+}
+
+.login__panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 64px 56px 40px;
+  border-left: 1px solid var(--rule);
+  background: #000;
+}
+.login__step {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: var(--label-3);
 }
 .login__title {
+  margin-top: 14px;
   font-size: 40px;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: 0.12em;
 }
 .login__sub {
-  margin-top: 8px;
+  margin-top: 10px;
   color: var(--label-3);
   font-size: var(--t-callout);
 }
 .login__form {
   width: 100%;
-  margin-top: 32px;
+  margin-top: 40px;
   display: grid;
-  gap: 16px;
+  gap: 20px;
 }
 .login__fields {
-  border-radius: var(--r-lg);
-  background: var(--bg-elevated);
-  box-shadow: 0 0 0 0.5px var(--separator), var(--shadow-raise);
-  overflow: hidden;
-  text-align: left;
-  transition: box-shadow var(--dur);
+  display: grid;
+  border: 1px solid var(--rule);
+  transition: border-color var(--dur), box-shadow var(--dur);
 }
 .login__fields:focus-within {
-  box-shadow: 0 0 0 2px var(--accent-vivid), 0 0 0 6px var(--accent-tint);
+  border-color: #fff;
+  box-shadow: inset 0 0 0 1px #fff;
 }
 .login__fields[data-error] {
-  box-shadow: 0 0 0 2px var(--red-vivid), 0 0 0 6px var(--red-tint);
+  border-color: var(--red-vivid);
+  box-shadow: inset 0 0 0 1px var(--red-vivid);
 }
 .login__fields.is-shaking {
   animation: shake 420ms var(--ease-out);
@@ -87,15 +114,16 @@
   display: block;
 }
 .login__field + .login__field {
-  border-top: 0.5px solid var(--separator);
+  border-top: 1px solid var(--separator);
 }
 .login__input {
   width: 100%;
-  height: 54px;
-  padding: 0 16px;
+  height: 58px;
+  padding: 0 18px;
   border: 0;
   background: transparent;
   font-size: var(--t-body);
+  letter-spacing: 0.04em;
 }
 .login__input:focus {
   outline: none;
@@ -106,24 +134,30 @@
 .login__error {
   color: var(--red);
   font-size: var(--t-sub);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .login__demo {
   width: 100%;
-  margin-top: 28px;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--separator);
 }
 .login__demo-toggle {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
+  min-height: 40px;
   border: 0;
   background: transparent;
-  color: var(--accent);
-  font-size: var(--t-sub);
-  font-weight: 500;
-  padding: 6px 10px;
-  border-radius: var(--r-sm);
+  color: var(--label-2);
+  font-size: var(--t-foot);
+  font-weight: 700;
+  letter-spacing: var(--track-caps);
+  padding: 0;
+}
+.login__demo-toggle:hover {
+  color: var(--label);
 }
 .login__demo-toggle svg {
   transition: transform var(--dur) var(--ease-out);
@@ -132,44 +166,69 @@
   transform: rotate(180deg);
 }
 .login__demo-list {
-  margin-top: 10px;
-  padding: 6px;
-  border-radius: var(--r-lg);
-  background: var(--bg-elevated);
-  box-shadow: 0 0 0 0.5px var(--separator);
-  text-align: left;
+  margin-top: 8px;
   animation: fade-in 200ms var(--ease-out);
 }
 .login__demo-hint {
-  padding: 8px 10px 6px;
+  padding: 4px 0 10px;
   font-size: var(--t-foot);
   color: var(--label-3);
 }
 .login__demo-item {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   width: 100%;
-  padding: 8px 10px;
+  padding: 10px 8px;
   border: 0;
-  border-radius: var(--r-sm);
+  border-top: 1px solid var(--separator);
   background: transparent;
   text-align: left;
+  transition: background var(--dur), color var(--dur);
 }
 .login__demo-item:hover {
-  background: var(--bg-hover);
+  background: #fff;
+  color: #000;
+}
+.login__demo-item:hover .login__demo-role {
+  color: rgba(0, 0, 0, 0.64);
 }
 .login__demo-name {
   display: block;
   font-size: var(--t-sub);
-  font-weight: 600;
+  font-weight: 700;
 }
 .login__demo-role {
   display: block;
   font-size: var(--t-foot);
+  letter-spacing: 0.04em;
   color: var(--label-3);
 }
 .login__foot {
-  font-size: var(--t-foot);
+  margin-top: 32px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
   color: var(--label-4);
+}
+
+/* Narrower than the hero needs: the sign-in column comes first, the headline above it, no demo. */
+@media (max-width: 1099px) {
+  .login {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .login__hero {
+    padding: 48px 24px 0;
+  }
+  .login__headline {
+    font-size: 34px;
+  }
+  .login__stage {
+    display: none;
+  }
+  .login__panel {
+    border-left: 0;
+    padding: 40px 24px 32px;
+  }
 }

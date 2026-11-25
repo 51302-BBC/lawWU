@@ -1,13 +1,28 @@
-import { useRef, useState, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { login } from '../../api/authApi'
 import { useSession } from '../../app/session'
 import { EMPLOYEES } from '../../mock/seed'
 import { Avatar, Button } from '../../ui/components'
 import { Icon } from '../../ui/Icon'
+import { LeaveDemo } from './LeaveDemo'
 import './login.css'
 
 const DEMO = ['A005', 'A003', 'A004', 'A002']
+
+/** The hero demo only mounts where the layout shows it (and never without matchMedia, as in tests). */
+function useMedia(query: string) {
+  const get = () => typeof window !== 'undefined' && !!window.matchMedia && window.matchMedia(query).matches
+  const [match, setMatch] = useState(get)
+  useEffect(() => {
+    if (!window.matchMedia) return
+    const mq = window.matchMedia(query)
+    const on = () => setMatch(mq.matches)
+    mq.addEventListener('change', on)
+    return () => mq.removeEventListener('change', on)
+  }, [query])
+  return match
+}
 
 export function LoginPage() {
   const { user, setUser } = useSession()
@@ -22,6 +37,7 @@ export function LoginPage() {
   const [shake, setShake] = useState(0)
   const [demoOpen, setDemoOpen] = useState(false)
   const formRef = useRef<HTMLFormElement>(null)
+  const wide = useMedia('(min-width: 1100px)')
 
   if (user) return <Navigate to={from} replace />
 
@@ -49,10 +65,22 @@ export function LoginPage() {
 
   return (
     <div className="login">
+      <section className="login__hero" aria-label="系統介紹">
+        <p className="login__eyebrow">事務所內部系統<i aria-hidden="true" />LEAVE</p>
+        <p className="login__headline">
+          每一張假單，
+          <br />
+          都看得見它走到哪。
+        </p>
+        <p className="login__lede">送出之後，主管核准到哪一站、還要等誰，一眼就知道。</p>
+        {wide && (
+          <div className="login__stage">
+            <LeaveDemo />
+          </div>
+        )}
+      </section>
       <div className="login__panel">
-        <span className="login__icon" aria-hidden="true">
-          <Icon name="calendar" size={34} strokeWidth={2} />
-        </span>
+        <p className="login__step">SIGN IN</p>
         <h1 className="login__title">登入</h1>
         <p className="login__sub">用你的員工編號登入事務所請假系統</p>
 
@@ -103,7 +131,7 @@ export function LoginPage() {
             onClick={() => setDemoOpen((o) => !o)}
           >
             示範帳號
-            <Icon name="chevronDown" size={16} className={demoOpen ? 'is-open' : ''} />
+            <Icon name="chevronDown" size={14} strokeWidth={2} className={demoOpen ? 'is-open' : ''} />
           </button>
           {demoOpen && (
             <div className="login__demo-list">
@@ -135,8 +163,8 @@ export function LoginPage() {
             </div>
           )}
         </div>
+        <p className="login__foot">示範環境：資料只存在這台電腦的瀏覽器裡</p>
       </div>
-      <p className="login__foot">示範環境：資料只存在這台電腦的瀏覽器裡</p>
     </div>
   )
 }
