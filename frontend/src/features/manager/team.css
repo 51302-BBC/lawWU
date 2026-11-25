@@ -1,0 +1,159 @@
+.team-week__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 18px 20px 12px;
+}
+.cal__nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* week table */
+.tw {
+  padding: 0 12px 4px;
+  overflow-x: auto;
+}
+.tw__row {
+  display: grid;
+  grid-template-columns: minmax(150px, 1.3fr) repeat(5, minmax(84px, 1fr));
+  align-items: center;
+  min-width: 600px;
+}
+.tw__row + .tw__row {
+  border-top: 0.5px solid var(--separator);
+}
+.tw__row--head {
+  font-size: var(--t-foot);
+  color: var(--label-3);
+}
+.tw__name-h {
+  padding: 8px;
+  font-weight: 600;
+}
+.tw__day-h {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 4px;
+}
+.tw__dow {
+  font-weight: 600;
+}
+.tw__date {
+  font-size: var(--t-callout);
+  color: var(--label);
+  font-weight: 600;
+}
+.tw__day-h.is-today .tw__date {
+  display: inline-grid;
+  place-items: center;
+  min-width: 26px;
+  height: 26px;
+  border-radius: 13px;
+  background: var(--red-fill);
+  color: #fff;
+}
+.tw__name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  font-weight: 600;
+  min-width: 0;
+}
+.tw__me {
+  margin-left: 6px;
+  padding: 1px 7px;
+  border-radius: 980px;
+  background: var(--accent-tint);
+  color: var(--accent);
+  font-size: 12px;
+}
+.tw__cell {
+  padding: 6px 3px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.tw__leave {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--c) 22%, var(--bg-elevated));
+  color: var(--label);
+  font-size: var(--t-foot);
+  font-weight: 600;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tw__leave.is-part {
+  width: 60%;
+}
+.tw__leave.is-pending {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--c) 70%, var(--label-3));
+}
+.tw__holiday {
+  width: 100%;
+  font-size: 12px;
+  color: var(--red);
+  text-align: center;
+}
+.tw__foot {
+  padding-bottom: 14px;
+}
+
+/* balances table */
+.bt-wrap {
+  overflow-x: auto;
+}
+.bt {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--t-callout);
+}
+.bt th,
+.bt td {
+  padding: 10px 16px;
+  text-align: right;
+  border-top: 0.5px solid var(--separator);
+}
+.bt thead th {
+  border-top: 0;
+  font-size: var(--t-foot);
+  font-weight: 600;
+  color: var(--label-3);
+}
+.bt th:first-child {
+  text-align: left;
+}
+.bt tbody th {
+  font-weight: 600;
+}
+.bt tbody th .tw__name {
+  padding: 0;
+}
+.bt__title {
+  display: block;
+  font-size: var(--t-foot);
+  font-weight: 400;
+  color: var(--label-3);
+}
+.bt td.is-low {
+  color: var(--red);
+  font-weight: 600;
+}
+.bt__pending {
+  color: var(--orange);
+  font-weight: 600;
+}
+.bt tbody tr:hover {
+  background: var(--bg-hover);
+}

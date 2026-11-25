@@ -1,0 +1,133 @@
+/* ───────── Detail sheet ───────── */
+.detail {
+  display: grid;
+  gap: 20px;
+}
+.detail__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.detail__type {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.detail__range {
+  margin-top: 2px;
+  color: var(--label-2);
+}
+.detail__journey {
+  display: grid;
+  gap: 18px;
+  padding: 18px 16px;
+  border-radius: var(--r-md);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-raise);
+}
+.detail__waiting {
+  font-size: var(--t-headline);
+  font-weight: 600;
+}
+.detail__note {
+  display: flex;
+  gap: 12px;
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: var(--r-md);
+  background: var(--bg-fill);
+}
+.detail__note--rejected {
+  background: var(--red-tint);
+}
+.detail__note-who {
+  font-size: var(--t-foot);
+  font-weight: 600;
+  color: var(--label-3);
+  margin-bottom: 2px;
+}
+.detail__facts {
+  margin: 0;
+}
+.detail__facts .row {
+  min-height: 50px;
+  align-items: flex-start;
+}
+.detail__facts dt {
+  width: 72px;
+  flex: none;
+  color: var(--label-3);
+}
+.detail__facts dd {
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.detail__muted {
+  color: var(--label-4);
+}
+.detail__foot {
+  font-size: var(--t-sub);
+  text-align: center;
+}
+.detail__actions {
+  display: grid;
+  gap: 10px;
+}
+
+/* ───────── Inline confirm ───────── */
+.confirm {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border-radius: var(--r-md);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-raise), inset 0 0 0 1px var(--red-tint);
+  animation: fade-in 200ms var(--ease-out);
+}
+.confirm__title {
+  font-size: var(--t-headline);
+  font-weight: 650;
+}
+.confirm__text {
+  color: var(--label-2);
+  font-size: var(--t-sub);
+}
+.confirm__row {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+/* ───────── Records list ───────── */
+.records__filter {
+  margin-bottom: 16px;
+}
+.rec {
+  gap: 14px;
+}
+.rec__main {
+  display: grid;
+  gap: 2px;
+}
+.rec__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.rec__hours {
+  font-size: var(--t-sub);
+  color: var(--label-2);
+}
+.rec__year {
+  margin: 28px 4px 8px;
+  font-size: var(--t-foot);
+  font-weight: 600;
+  color: var(--label-3);
+}
+.rec__year:first-child {
+  margin-top: 0;
+}

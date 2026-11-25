@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-25T17:30:00+08:00",
+  "title": "Design System: 事務所請假",
+  "extensions": {
+    "colorMeta": {
+      "accent": { "role": "primary", "displayName": "Firm Blue", "canonical": "#0066cc", "tonalRamp": ["#001a33", "#00315f", "#004a8f", "#0066cc", "#3d8fdd", "#7ab4ea", "#b5d6f4", "#e6f0fb"] },
+      "grouped-bg": { "role": "neutral", "displayName": "Grouped Gray", "canonical": "#f5f5f7", "tonalRamp": ["#1d1d1f", "#3a3a3d", "#58585c", "#77777b", "#98989d", "#bbbbbf", "#dcdce0", "#f5f5f7"] },
+      "approved-green": { "role": "state", "displayName": "Approved Green", "canonical": "#1f7a35" },
+      "pending-orange": { "role": "state", "displayName": "Pending Orange", "canonical": "#b34700" },
+      "returned-red": { "role": "state", "displayName": "Returned Red", "canonical": "#c4001a" },
+      "cancel-purple": { "role": "state", "displayName": "Cancel Purple", "canonical": "#8944ab" }
+    },
+    "typographyMeta": {
+      "large-title": { "displayName": "Large Title", "purpose": "Page titles and the greeting." },
+      "body": { "displayName": "Body", "purpose": "Default text; 17px for older users at desktops." }
+    },
+    "shadows": [
+      { "name": "raise", "value": "0 1px 2px rgba(0,0,0,0.05), 0 2px 8px -2px rgba(0,0,0,0.06)", "purpose": "Resting grouped lists, inputs, tiles." },
+      { "name": "float", "value": "0 12px 40px -8px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.06)", "purpose": "Sheets, menus, toasts." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "State transitions, 200ms." },
+      { "name": "ease-sheet", "value": "cubic-bezier(0.32, 0.72, 0, 1)", "purpose": "Sheet rise (380ms) and toast entrance; no overshoot." },
+      { "name": "journey-pulse", "value": "2.2s ease-out infinite", "purpose": "Ring around the current approval stop." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "759px" },
+      { "name": "sheet-float", "value": "760px" },
+      { "name": "calendar-stack", "value": "1100px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main action, e.g. 申請請假 / 送出申請 / 核准.",
+      "html": "<button class=\"ds-btn\">申請請假</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 16px;border:0;border-radius:980px;background:#0066cc;color:#fff;font:590 16px -apple-system,'PingFang TC',sans-serif;transition:background .2s,transform .12s}.ds-btn:hover{background:#0058b0}.ds-btn:active{transform:scale(.97)}.ds-btn:focus-visible{outline:3px solid rgba(0,102,204,.55);outline-offset:2px}"
+    },
+    {
+      "name": "Status Pill",
+      "kind": "chip",
+      "refersTo": "status-pill",
+      "description": "Request state.",
+      "html": "<span class=\"ds-pill\">審核中</span>",
+      "css": ".ds-pill{display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px;border-radius:980px;background:rgba(255,149,0,.16);color:#b34700;font:600 13px -apple-system,'PingFang TC',sans-serif}.ds-pill::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}"
+    },
+    {
+      "name": "Grouped List Row",
+      "kind": "card",
+      "refersTo": "grouped-list",
+      "description": "Inset grouped list with hairline separators.",
+      "html": "<div class=\"ds-group\"><button class=\"ds-row\">特休・8 小時</button><button class=\"ds-row\">事假・5 小時</button></div>",
+      "css": ".ds-group{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.05),0 2px 8px -2px rgba(0,0,0,.06)}.ds-row{display:block;width:100%;min-height:56px;padding:12px 16px;border:0;background:transparent;text-align:left;font:600 17px -apple-system,'PingFang TC',sans-serif;border-top:.5px solid rgba(60,60,67,.16)}.ds-row:first-child{border-top:0}.ds-row:hover{background:rgba(0,0,0,.04)}"
+    },
+    {
+      "name": "Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Text, date and select fields.",
+      "html": "<input class=\"ds-input\" placeholder=\"簡單說明，讓主管更快了解\">",
+      "css": ".ds-input{width:100%;min-height:48px;padding:10px 14px;border:1px solid transparent;border-radius:12px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.05),0 2px 8px -2px rgba(0,0,0,.06);font:17px -apple-system,'PingFang TC',sans-serif}.ds-input:focus{outline:none;border-color:#0066cc;box-shadow:0 0 0 4px rgba(0,102,204,.1)}"
+    },
+    {
+      "name": "Journey",
+      "kind": "custom",
+      "description": "Signature: the path a request travels, current stop pulsing.",
+      "html": "<ol class=\"ds-j\"><li class=\"done\"><span>佳穎</span>你</li><li class=\"cur\"><span>建宏</span>林主管</li><li><span>雅婷</span>王經理</li></ol>",
+      "css": ".ds-j{display:flex;list-style:none;margin:0;padding:0;gap:0;font:600 13px -apple-system,'PingFang TC',sans-serif;color:#4a4a4f}.ds-j li{flex:1;display:grid;justify-items:center;gap:6px;position:relative}.ds-j li+li::before{content:'';position:absolute;top:19px;left:calc(-50% + 26px);right:calc(50% + 26px);height:3px;border-radius:2px;background:rgba(118,118,128,.2)}.ds-j li.cur::before{background:#1f7a35}.ds-j span{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#007aff;color:#fff;font-size:14px}.ds-j li:not(.done):not(.cur) span{filter:grayscale(1);opacity:.35}.ds-j li.cur span{box-shadow:0 0 0 3px #fff,0 0 0 5px #b34700}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Itinerary",
+    "overview": "Every leave request is a trip with stops: you → 林主管 → 王經理. The system's job is to make who it is waiting on, and what happens next, impossible to miss. Everything else is borrowed from the macOS / iOS system idiom so nobody has to learn the tool.",
+    "keyCharacteristics": [
+      "System font stack (SF / PingFang TC / Noto Sans TC), large bold titles, 17px body.",
+      "Inset grouped lists on #f5f5f7, white surfaces, 0.5px hairline separators.",
+      "One accent blue for actions and selection; green / orange / red / purple only for request state.",
+      "The Journey line — avatars on a rail with the current stop pulsing — wherever a request appears.",
+      "Sheets rise from the bottom (mobile) or float centered (desktop); confirms are inline, not nested modals."
+    ],
+    "rules": [
+      { "name": "The State Owns Color Rule", "body": "Green, orange, red and purple mean request state and nothing else.", "section": "colors" },
+      { "name": "The Solid Red Rule", "body": "White text sits on --red-fill (#d70015), never on the lighter --red.", "section": "colors" },
+      { "name": "The Hours Are Words Rule", "body": "Quantities are always written with their unit in plain language.", "section": "typography" }
+    ],
+    "dos": [
+      "Do show the Journey anywhere a request appears, and say in words who it is waiting on (「等林主管審核」).",
+      "Do show consequences before commitment: hours, remaining balance after, and the approval path live in the apply sheet.",
+      "Do warn inline with tinted notices (orange for advisories, red for blocks) and keep the submit button honest (disabled when blocked).",
+      "Do keep body text ≥16px and controls ≥40px tall."
+    ],
+    "donts": [
+      "Don't use rings or sparklines for balances; use the horizontal meter (blue used, striped orange pending).",
+      "Don't open a modal on top of a sheet; confirm inline.",
+      "Don't put white text on the light --red or --accent text tokens in dark mode; use the fill tokens.",
+      "Don't add a second accent color."
+    ]
+  }
+}
