@@ -1,4 +1,4 @@
-/* ───────────────── Tokens ───────────────── */
+/* ───────────────── Tokens — Liquid Glass (iOS 27 / macOS 27 idiom) ───────────────── */
 :root {
   color-scheme: light dark;
 
@@ -7,50 +7,72 @@
   --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro TC', 'PingFang TC',
     'Noto Sans TC', 'Microsoft JhengHei', 'Helvetica Neue', Arial, sans-serif;
 
-  /* surfaces */
-  --bg: #f5f5f7;
+  /* window ground + solid content surfaces */
+  --bg: #f2f2f7;
   --bg-elevated: #ffffff;
-  --bg-sidebar: rgba(236, 236, 240, 0.78);
-  --bg-fill: rgba(118, 118, 128, 0.12);
-  --bg-fill-strong: rgba(118, 118, 128, 0.2);
+  --bg-inset: #f2f2f7;
+  --bg-fill: rgba(120, 120, 128, 0.12);
+  --bg-fill-strong: rgba(120, 120, 128, 0.2);
   --bg-hover: rgba(0, 0, 0, 0.04);
-  --separator: rgba(60, 60, 67, 0.16);
-  --overlay: rgba(0, 0, 0, 0.32);
+  --separator: rgba(60, 60, 67, 0.13);
+  --overlay: rgba(0, 0, 0, 0.22);
+
+  /* glass layer (chrome only: sidebar, tab bar, toolbars, sheets, menus, toasts) */
+  --glass: rgba(255, 255, 255, 0.62);
+  --glass-strong: rgba(255, 255, 255, 0.8);
+  --glass-edge: rgba(0, 0, 0, 0.07);
+  --glass-specular: inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 0 0 0.5px rgba(255, 255, 255, 0.6);
+  --glass-shadow: 0 12px 32px -12px rgba(30, 40, 80, 0.22), 0 2px 6px -2px rgba(30, 40, 80, 0.08);
+  --glass-blur: saturate(190%) blur(26px);
+
+  /* ambient color the glass refracts */
+  --bloom-a: rgba(0, 136, 255, 0.11);
+  --bloom-b: rgba(203, 48, 224, 0.07);
+  --bloom-c: rgba(0, 195, 208, 0.09);
 
   /* text */
-  --label: #1d1d1f;
-  --label-2: #4a4a4f;
-  --label-3: #6e6e73;
+  --label: #1c1c1e;
+  --label-2: #3c3c43;
+  --label-3: #636366;
   --label-4: #8e8e93;
 
-  /* accent + semantics (text-safe on white, ≥4.5:1) */
+  /* accent: vivid for non-text marks, deeper for text and filled buttons (AA with white) */
+  --accent-vivid: #0088ff;
   --accent: #0066cc;
   --accent-hover: #0058b0;
-  --accent-tint: rgba(0, 102, 204, 0.1);
-  --accent-fill: #0066cc;
-  --accent-fill-hover: #0058b0;
+  --accent-tint: rgba(0, 136, 255, 0.12);
+  --accent-fill: #0071e3;
+  --accent-fill-hover: #0062c4;
   --on-accent: #ffffff;
-  --green: #1f7a35;
-  --green-tint: rgba(52, 199, 89, 0.14);
-  --orange: #b34700;
-  --orange-tint: rgba(255, 149, 0, 0.16);
-  --red: #c4001a;
-  --red-tint: rgba(255, 59, 48, 0.12);
+
+  /* iOS 26 system colors (fills) + text-safe shades */
+  --green-vivid: #34c759;
+  --green: #1d7a34;
+  --green-tint: rgba(52, 199, 89, 0.15);
+  --orange-vivid: #ff8d28;
+  --orange: #b04a00;
+  --orange-tint: rgba(255, 141, 40, 0.16);
+  --red-vivid: #ff383c;
+  --red: #c8001e;
+  --red-tint: rgba(255, 56, 60, 0.12);
   --red-fill: #d70015;
-  --purple: #8944ab;
-  --purple-tint: rgba(175, 82, 222, 0.12);
-  --gray-tint: rgba(142, 142, 147, 0.16);
+  --purple-vivid: #cb30e0;
+  --purple: #8a2ea3;
+  --purple-tint: rgba(203, 48, 224, 0.12);
+  --gray-tint: rgba(120, 120, 128, 0.14);
 
-  /* shape */
-  --r-sm: 8px;
-  --r-md: 12px;
-  --r-lg: 16px;
-  --r-xl: 22px;
-  --shadow-float: 0 12px 40px -8px rgba(0, 0, 0, 0.22), 0 2px 8px rgba(0, 0, 0, 0.06);
-  --shadow-raise: 0 1px 2px rgba(0, 0, 0, 0.05), 0 2px 8px -2px rgba(0, 0, 0, 0.06);
+  /* shape — concentric: inner radius = outer radius − padding */
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 26px;
+  --r-window: 32px;
+  --shadow-float: 0 24px 60px -16px rgba(20, 30, 60, 0.3), 0 4px 14px -4px rgba(20, 30, 60, 0.1);
+  --shadow-raise: 0 1px 2px rgba(20, 30, 60, 0.04), 0 4px 16px -6px rgba(20, 30, 60, 0.08);
 
-  /* type scale (px, Apple HIG-ish) */
+  /* type scale (px, Apple HIG) */
   --t-large: 34px;
+  --t-title1: 28px;
   --t-title2: 22px;
   --t-title3: 20px;
   --t-headline: 17px;
@@ -62,6 +84,7 @@
   /* motion */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-sheet: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-lens: cubic-bezier(0.3, 0.9, 0.25, 1);
   --dur: 200ms;
 }
 
@@ -69,36 +92,62 @@
   :root {
     --bg: #000000;
     --bg-elevated: #1c1c1e;
-    --bg-sidebar: rgba(28, 28, 30, 0.82);
-    --bg-fill: rgba(118, 118, 128, 0.24);
-    --bg-fill-strong: rgba(118, 118, 128, 0.36);
+    --bg-inset: #2c2c2e;
+    --bg-fill: rgba(120, 120, 128, 0.24);
+    --bg-fill-strong: rgba(120, 120, 128, 0.36);
     --bg-hover: rgba(255, 255, 255, 0.06);
-    --separator: rgba(84, 84, 88, 0.6);
-    --overlay: rgba(0, 0, 0, 0.56);
+    --separator: rgba(84, 84, 88, 0.55);
+    --overlay: rgba(0, 0, 0, 0.5);
+
+    --glass: rgba(40, 40, 44, 0.58);
+    --glass-strong: rgba(40, 40, 44, 0.82);
+    --glass-edge: rgba(255, 255, 255, 0.1);
+    --glass-specular: inset 0 1px 0 rgba(255, 255, 255, 0.14), inset 0 0 0 0.5px rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 14px 36px -12px rgba(0, 0, 0, 0.7), 0 2px 6px -2px rgba(0, 0, 0, 0.4);
+
+    --bloom-a: rgba(0, 120, 255, 0.2);
+    --bloom-b: rgba(120, 60, 230, 0.16);
+    --bloom-c: rgba(0, 170, 190, 0.12);
 
     --label: #f5f5f7;
     --label-2: #d1d1d6;
     --label-3: #aeaeb2;
     --label-4: #8e8e93;
 
-    --accent: #3d9bff;
-    --accent-hover: #64b0ff;
-    --accent-tint: rgba(10, 132, 255, 0.2);
-    --accent-fill: #0068d6;
-    --accent-fill-hover: #0074ec;
-    --on-accent: #ffffff;
+    --accent-vivid: #0091ff;
+    --accent: #4da3ff;
+    --accent-hover: #75b8ff;
+    --accent-tint: rgba(0, 145, 255, 0.22);
+    --accent-fill: #0071e3;
+    --accent-fill-hover: #0a80f5;
+    --green-vivid: #30d158;
     --green: #4cd964;
-    --green-tint: rgba(48, 209, 88, 0.18);
-    --orange: #ffaa33;
-    --orange-tint: rgba(255, 159, 10, 0.2);
-    --red: #ff6961;
-    --red-tint: rgba(255, 69, 58, 0.2);
-    --purple: #da8fff;
-    --purple-tint: rgba(191, 90, 242, 0.2);
-    --gray-tint: rgba(142, 142, 147, 0.26);
+    --green-tint: rgba(48, 209, 88, 0.2);
+    --orange-vivid: #ff9230;
+    --orange: #ffad5c;
+    --orange-tint: rgba(255, 146, 48, 0.2);
+    --red-vivid: #ff4245;
+    --red: #ff7a75;
+    --red-tint: rgba(255, 66, 69, 0.2);
+    --purple-vivid: #db34f2;
+    --purple: #e08cf5;
+    --purple-tint: rgba(219, 52, 242, 0.2);
+    --gray-tint: rgba(120, 120, 128, 0.28);
 
-    --shadow-float: 0 16px 48px -8px rgba(0, 0, 0, 0.7), 0 0 0 0.5px rgba(255, 255, 255, 0.1);
-    --shadow-raise: 0 0 0 0.5px rgba(255, 255, 255, 0.08);
+    --shadow-float: 0 24px 64px -16px rgba(0, 0, 0, 0.8), 0 0 0 0.5px rgba(255, 255, 255, 0.1);
+    --shadow-raise: 0 0 0 0.5px rgba(255, 255, 255, 0.07);
+  }
+}
+
+/* People who turn off transparency get solid chrome (macOS / iOS "Reduce Transparency"). */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --glass: var(--bg-elevated);
+    --glass-strong: var(--bg-elevated);
+    --glass-blur: none;
+    --bloom-a: transparent;
+    --bloom-b: transparent;
+    --bloom-c: transparent;
   }
 }
 
@@ -136,7 +185,27 @@ body {
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-feature-settings: 'tnum' 0;
+}
+
+/* Ambient color behind everything — what the glass layer refracts. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(55% 45% at 8% 0%, var(--bloom-a), transparent 70%),
+    radial-gradient(45% 40% at 100% 6%, var(--bloom-b), transparent 70%),
+    radial-gradient(60% 50% at 75% 100%, var(--bloom-c), transparent 72%);
+}
+
+/* The glass material. Use only on chrome that floats above content. */
+.glass {
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-specular), 0 0 0 0.5px var(--glass-edge), var(--glass-shadow);
 }
 
 h1,
@@ -165,17 +234,17 @@ button {
 }
 
 ::selection {
-  background: var(--accent-tint);
+  background: color-mix(in srgb, var(--accent-vivid) 24%, transparent);
   color: var(--label);
 }
 
 input,
 textarea {
-  caret-color: var(--accent);
+  caret-color: var(--accent-vivid);
 }
 
 :focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  outline: 3px solid color-mix(in srgb, var(--accent-vivid) 60%, transparent);
   outline-offset: 2px;
   border-radius: var(--r-sm);
 }

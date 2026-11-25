@@ -1,17 +1,27 @@
 /* ───────── Balance strip ───────── */
-.balances {
+/* widget-style tiles (iOS 27 widgets: solid surface, concentric 26px corners) */
+.balances.group {
   display: grid;
   grid-template-columns: 1.6fr 1fr 1fr auto;
+  gap: 12px;
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  overflow: visible;
 }
 .bal {
   display: grid;
   align-content: start;
   gap: 6px;
-  padding: 20px 22px;
+  padding: 20px 22px 18px;
   min-width: 0;
+  border-radius: var(--r-xl);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-raise);
 }
-.bal + .bal {
-  border-left: 0.5px solid var(--separator);
+.bal--hero .bal__label {
+  color: var(--accent);
+  font-weight: 650;
 }
 .bal__label {
   font-size: var(--t-sub);
@@ -20,9 +30,9 @@
 }
 .bal__value {
   font-family: var(--font-display);
-  font-size: 40px;
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-size: 44px;
+  font-weight: 750;
+  letter-spacing: -0.035em;
   line-height: 1.05;
 }
 .bal__value--sm {
@@ -55,63 +65,65 @@
   margin-left: 0;
 }
 .dot--used {
-  background: var(--accent);
+  background: var(--accent-vivid);
 }
 .dot--pending {
-  background: var(--orange);
+  background: var(--orange-vivid);
 }
 .meter {
   display: flex;
-  height: 8px;
-  margin: 8px 0 4px;
-  border-radius: 4px;
+  gap: 2px;
+  height: 10px;
+  margin: 10px 0 4px;
+  border-radius: 999px;
   background: var(--bg-fill);
   overflow: hidden;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.06);
 }
 .meter__used {
-  background: var(--accent);
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-vivid), color-mix(in srgb, var(--accent-vivid) 75%, #fff));
 }
 .meter__pending {
+  border-radius: 999px;
   background: repeating-linear-gradient(
     -45deg,
-    var(--orange) 0 3px,
-    color-mix(in srgb, var(--orange) 55%, transparent) 3px 6px
+    var(--orange-vivid) 0 4px,
+    color-mix(in srgb, var(--orange-vivid) 50%, transparent) 4px 8px
   );
 }
 .bal--more {
   display: flex;
   align-items: center;
   align-content: center;
-  gap: 2px;
+  gap: 4px;
+  padding: 0 22px;
   border: 0;
-  background: transparent;
+  background: var(--accent-tint);
+  box-shadow: none;
   color: var(--accent);
   font-size: var(--t-sub);
-  font-weight: 500;
+  font-weight: 600;
   white-space: nowrap;
-  transition: background var(--dur);
+  transition: background var(--dur), transform 160ms var(--ease-lens);
 }
 .bal--more:hover {
-  background: var(--bg-hover);
+  background: color-mix(in srgb, var(--accent-vivid) 18%, transparent);
+}
+.bal--more:active {
+  transform: scale(0.97);
 }
 @media (max-width: 900px) {
-  .balances {
+  .balances.group {
     grid-template-columns: 1fr 1fr;
   }
   .bal--hero {
     grid-column: 1 / -1;
   }
-  .bal + .bal {
-    border-left: 0;
-    border-top: 0.5px solid var(--separator);
-  }
-  .bal:nth-child(3) {
-    border-left: 0.5px solid var(--separator);
-  }
   .bal--more {
     grid-column: 1 / -1;
     justify-content: center;
-    padding: 14px;
+    padding: 16px;
   }
 }
 
@@ -120,19 +132,20 @@
   gap: 16px;
   padding: 16px;
 }
+/* Calendar-icon date tile */
 .datechip {
   display: grid;
   justify-items: center;
   flex: none;
-  width: 52px;
+  width: 54px;
   padding: 6px 0 8px;
   border-radius: var(--r-md);
-  background: var(--bg);
+  background: var(--bg-inset);
   line-height: 1.1;
 }
 .datechip__m {
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--red);
 }
 .datechip__d {

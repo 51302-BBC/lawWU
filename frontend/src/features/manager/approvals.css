@@ -76,8 +76,8 @@
   background: var(--separator);
 }
 .acard__facts > div {
-  padding: 10px 14px;
-  background: var(--bg);
+  padding: 11px 16px;
+  background: var(--bg-inset);
 }
 .acard__facts dt {
   font-size: var(--t-foot);
@@ -109,8 +109,7 @@
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  padding: 14px 20px;
-  border-top: 0.5px solid var(--separator);
+  padding: 4px 20px 20px;
 }
 .acard__actions .btn {
   min-width: 112px;
@@ -118,8 +117,10 @@
 .acard__reject {
   display: grid;
   gap: 10px;
-  padding: 16px 20px 0;
-  border-top: 0.5px solid var(--separator);
+  margin: 0 12px 12px;
+  padding: 16px 16px 0;
+  border-radius: calc(var(--r-xl) - 12px);
+  background: var(--bg-inset);
   animation: fade-in 200ms var(--ease-out);
 }
 .acard__reject .acard__actions {

@@ -174,7 +174,7 @@ export function DashboardPage() {
             {formatDateLong(now)}・{TEAMS[me.teamId]}
           </p>
         </div>
-        <Button size="lg" icon="plus" onClick={() => navigate('/apply')}>
+        <Button size="lg" icon="plus" className="only-desktop" onClick={() => navigate('/apply')}>
           申請請假
         </Button>
       </header>

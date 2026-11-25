@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { isApprover } from '../api/authApi'
 import { listPendingFor, resetDemoData } from '../api/leaveApi'
 import { Avatar } from '../ui/components'
@@ -47,7 +47,6 @@ function UserMenu() {
       <button
         type="button"
         className="usermenu__trigger"
-        aria-haspopup="menu"
         aria-expanded={open}
         onClick={() => setOpen((o) => !o)}
       >
@@ -59,10 +58,9 @@ function UserMenu() {
         <Icon name="chevronDown" size={16} className="usermenu__chev" />
       </button>
       {open && (
-        <div className="usermenu__pop" role="menu">
+        <div className="usermenu__pop">
           <button
             type="button"
-            role="menuitem"
             className="usermenu__item"
             onClick={() => {
               resetDemoData()
@@ -75,7 +73,6 @@ function UserMenu() {
           </button>
           <button
             type="button"
-            role="menuitem"
             className="usermenu__item usermenu__item--danger"
             onClick={async () => {
               await signOut()
@@ -95,10 +92,40 @@ export function Shell({ children }: { children: ReactNode }) {
   const user = useUser()
   const approver = isApprover(user)
   const pending = useAsync(() => (approver ? listPendingFor(user.id) : Promise.resolve([])), [user.id, approver])
+  const navigate = useNavigate()
+  const { pathname } = useLocation()
+  const navRef = useRef<HTMLElement>(null)
+  const [lensReady, setLensReady] = useState(false)
+
+  // The liquid lens: one glass capsule that slides to the active item.
+  useLayoutEffect(() => {
+    const nav = navRef.current
+    if (!nav) return
+    const place = () => {
+      const active = nav.querySelector<HTMLElement>('.nav__item.active')
+      if (!active) {
+        nav.style.setProperty('--lo', '0')
+        return
+      }
+      nav.style.setProperty('--lo', '1')
+      nav.style.setProperty('--ly', `${active.offsetTop}px`)
+      nav.style.setProperty('--lh', `${active.offsetHeight}px`)
+      nav.style.setProperty('--lx', `${active.offsetLeft}px`)
+      nav.style.setProperty('--lw', `${active.offsetWidth}px`)
+    }
+    place()
+    const raf = requestAnimationFrame(() => setLensReady(true))
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(place) : null
+    ro?.observe(nav)
+    return () => {
+      cancelAnimationFrame(raf)
+      ro?.disconnect()
+    }
+  }, [pathname, approver, pending.data?.length])
 
   return (
     <div className="shell">
-      <aside className="sidebar">
+      <aside className="sidebar glass">
         <div className="brand">
           <span className="brand__mark" aria-hidden="true">
             <Icon name="calendar" size={18} strokeWidth={2.2} />
@@ -108,7 +135,8 @@ export function Shell({ children }: { children: ReactNode }) {
             <span className="brand__app">請假</span>
           </span>
         </div>
-        <nav className="nav" aria-label="主選單">
+        <nav className="nav" aria-label="主選單" ref={navRef}>
+          <span className="nav__lens" aria-hidden="true" data-ready={lensReady} />
           <NavItem to="/" end icon="house" label="總覽" />
           <NavItem to="/records" icon="list" label="我的紀錄" />
           <NavItem to="/calendar" icon="calendar" label="行事曆" />
@@ -123,6 +151,9 @@ export function Shell({ children }: { children: ReactNode }) {
       </aside>
       {/* Outside the sidebar: its backdrop-filter would trap position: fixed on mobile. */}
       <UserMenu />
+      <button type="button" className="fab" aria-label="申請請假" onClick={() => navigate('/apply')}>
+        <Icon name="plus" size={28} strokeWidth={2.4} />
+      </button>
       <main className="content">{children}</main>
     </div>
   )

@@ -1,38 +1,43 @@
 ---
 name: 事務所請假
-description: Humane, Apple-idiom leave management for a small accounting firm
+description: Leave management for a small accounting firm in the current Apple idiom (Liquid Glass, iOS 27 / macOS 27)
 colors:
+  accent-vivid: "#0088ff"
   accent: "#0066cc"
-  accent-fill: "#0066cc"
-  accent-dark: "#3d9bff"
-  accent-fill-dark: "#0068d6"
-  grouped-bg: "#f5f5f7"
-  grouped-bg-dark: "#000000"
-  elevated: "#ffffff"
-  elevated-dark: "#1c1c1e"
-  label: "#1d1d1f"
-  label-secondary: "#4a4a4f"
-  label-tertiary: "#6e6e73"
+  accent-fill: "#0071e3"
+  accent-dark-text: "#4da3ff"
+  window-ground: "#f2f2f7"
+  window-ground-dark: "#000000"
+  surface: "#ffffff"
+  surface-dark: "#1c1c1e"
+  glass: "rgba(255, 255, 255, 0.62)"
+  glass-dark: "rgba(40, 40, 44, 0.58)"
+  label: "#1c1c1e"
+  label-secondary: "#3c3c43"
+  label-tertiary: "#636366"
   label-quaternary: "#8e8e93"
-  approved-green: "#1f7a35"
-  pending-orange: "#b34700"
-  returned-red: "#c4001a"
+  green-vivid: "#34c759"
+  green-text: "#1d7a34"
+  orange-vivid: "#ff8d28"
+  orange-text: "#b04a00"
+  red-vivid: "#ff383c"
+  red-text: "#c8001e"
   red-fill: "#d70015"
-  cancel-purple: "#8944ab"
+  purple-vivid: "#cb30e0"
+  purple-text: "#8a2ea3"
 typography:
   large-title:
     fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif"
     fontSize: "34px"
-    fontWeight: 700
-    lineHeight: 1.15
-    letterSpacing: "-0.025em"
-  title2:
-    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang TC', 'Noto Sans TC', sans-serif"
-    fontSize: "22px"
-    fontWeight: 700
-    letterSpacing: "-0.02em"
+    fontWeight: 750
+    lineHeight: 1.12
+    letterSpacing: "-0.03em"
+  hero-number:
+    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang TC', sans-serif"
+    fontSize: "44px"
+    fontWeight: 750
+    letterSpacing: "-0.035em"
   title3:
-    fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang TC', 'Noto Sans TC', sans-serif"
     fontSize: "20px"
     fontWeight: 700
     letterSpacing: "-0.02em"
@@ -42,160 +47,150 @@ typography:
     fontWeight: 400
     lineHeight: 1.47
     letterSpacing: "-0.01em"
-  callout:
-    fontSize: "16px"
   subhead:
     fontSize: "15px"
   footnote:
     fontSize: "13px"
     fontWeight: 600
 rounded:
-  sm: "8px"
-  md: "12px"
-  lg: "16px"
-  xl: "22px"
-  pill: "980px"
+  sm: "10px"
+  md: "14px"
+  lg: "20px"
+  xl: "26px"
+  window: "32px"
+  capsule: "999px"
 spacing:
-  row-x: "16px"
-  row-min: "56px"
-  section: "36px"
-  page-x: "24px–56px"
+  window-inset: "10px"
+  row-x: "18px"
+  row-min: "58px"
+  section: "40px"
 components:
-  button-primary:
+  button-glass-prominent:
     backgroundColor: "{colors.accent-fill}"
-    textColor: "{colors.elevated}"
-    rounded: "{rounded.pill}"
+    textColor: "{colors.surface}"
+    rounded: "{rounded.capsule}"
     height: "40px"
-    padding: "0 16px"
-  button-primary-lg:
-    backgroundColor: "{colors.accent-fill}"
-    textColor: "{colors.elevated}"
-    rounded: "{rounded.pill}"
-    height: "50px"
-    padding: "0 24px"
-  grouped-list:
-    backgroundColor: "{colors.elevated}"
-    rounded: "{rounded.md}"
+    padding: "0 18px"
+  button-glass:
+    backgroundColor: "{colors.glass}"
+    textColor: "{colors.label}"
+    rounded: "{rounded.capsule}"
+    height: "40px"
+  surface:
+    backgroundColor: "{colors.surface}"
+    rounded: "{rounded.xl}"
+  sidebar:
+    backgroundColor: "{colors.glass}"
+    rounded: "{rounded.xl}"
+    width: "248px"
+  sheet:
+    rounded: "{rounded.window}"
   input:
-    backgroundColor: "{colors.elevated}"
+    backgroundColor: "{colors.surface}"
     rounded: "{rounded.md}"
-    height: "48px"
-    padding: "10px 14px"
+    height: "50px"
+    padding: "11px 16px"
   status-pill:
-    rounded: "{rounded.pill}"
+    rounded: "{rounded.capsule}"
     height: "26px"
-    padding: "0 10px"
 ---
 
 # Design System: 事務所請假
 
 ## Overview
 
-**Creative North Star: "The Itinerary"**
+**Creative North Star: "Glass Over the Itinerary"**
 
-Every leave request is a trip with stops: you → 林主管 → 王經理. The system's job is to make "who is it waiting on, and what happens next" impossible to miss, the way a parcel tracker or a boarding pass does. Everything else is borrowed from the macOS / iOS system idiom so nobody has to learn the tool: grouped inset lists on a soft gray ground, a translucent sidebar, pill buttons, large titles, one blue.
+Every leave request is a trip with stops: you → 林主管 → 王經理. v2 places that itinerary under a Liquid Glass layer, as iOS 27 and macOS 27 do: navigation and actions float as translucent glass above solid, legible content. The chrome refracts a faint ambient color field; the content never sits on glass, so the firm's older users read every number on a solid surface.
 
-Density is calm, not sparse: rows are 56px tall, body text is 17px, and the type is large enough for the firm's older users at office desktops. Color is restrained to one accent plus a small semantic vocabulary for request state. Light and dark follow the system.
+Restrained and current: one blue, the iOS 26 system colors reserved for request state, capsule controls, concentric corners (window 32 → surfaces 26 → fields 14), and one signature motion — the liquid lens that slides to whatever is selected.
 
 **Key Characteristics:**
-- System font stack (SF / PingFang TC / Noto Sans TC), large bold titles, 17px body.
-- Inset grouped lists on #f5f5f7, white surfaces, 0.5px hairline separators.
-- One accent blue for actions and selection; green / orange / red / purple only for request state.
-- The Journey line — avatars on a rail with the current stop pulsing — wherever a request appears.
-- Sheets rise from the bottom (mobile) or float centered (desktop); confirms are inline, not nested modals.
+- Glass only on chrome: floating sidebar / tab bar, sheet, toolbar buttons, menus, toasts.
+- Solid content surfaces with 26px corners, no hairline borders; widgets instead of a single grouped strip.
+- Capsules for every control; the selected item is a raised lens that slides between options.
+- iOS 26 system colors as vivid fills, with darker text-safe shades for any colored text.
+- Reduce Transparency and Reduce Motion are honored: glass becomes solid, the lens stops gliding.
 
 ## Colors
 
-Restrained: neutral system grays with one accent and a state vocabulary.
+Restrained: neutral ground and surfaces, one accent, a four-color state vocabulary.
 
 ### Primary
-- **Firm Blue** (#0066cc; dark #3d9bff text / #0068d6 fill): primary buttons, links, selected leave type, focus rings, nav icons, "你的假" in the calendar. Button fills use the darker fill token so white text stays ≥4.5:1 in dark mode.
+- **System Blue** (vivid #0088ff for marks and icons; #0066cc for text; #0071e3 for filled buttons so white text stays ≥4.5:1): primary actions, selection, focus, nav icons, used-hours meters.
 
 ### Neutral
-- **Grouped Gray** (#f5f5f7; dark #000000): page ground.
-- **Card White** (#ffffff; dark #1c1c1e): grouped lists, sheets' inner surfaces, inputs.
-- **Label** (#1d1d1f), **Secondary** (#4a4a4f), **Tertiary** (#6e6e73), **Quaternary** (#8e8e93): text hierarchy; quaternary only for disabled, weekends and placeholders.
-- **Separator** (rgba(60,60,67,0.16)): 0.5px hairlines between rows, inset 16px (62px for avatar rows).
+- **Window Ground** (#f2f2f7 / dark #000): page ground, carrying faint blue / lilac / teal blooms (≤11% alpha) for the glass to refract.
+- **Surface** (#ffffff / dark #1c1c1e): every content container.
+- **Glass** (white 62% / dark #28282c 58%, blur 26px, saturate 190%): chrome only.
+- **Label → Quaternary** (#1c1c1e, #3c3c43, #636366, #8e8e93): text hierarchy; quaternary never for readable text.
 
 ### State
-- **Approved Green** (#1f7a35): 已核准 pill, completed journey stops and rail.
-- **Pending Orange** (#b34700): 審核中 pill, the pulsing current stop, busy-season notices.
-- **Returned Red** (#c4001a; solid fill #d70015): 已退回, errors, holidays, today marker, nav badges.
-- **Cancel Purple** (#8944ab): 撤銷審核中 and cancel-request cards.
+- **Green** (#34c759 fill / #1d7a34 text): approved, completed journey stops.
+- **Orange** (#ff8d28 fill / #b04a00 text): pending, the pulsing current stop, busy-season notices.
+- **Red** (#ff383c fill / #c8001e text / #d70015 solid behind white): returned, errors, holidays, badges, today.
+- **Purple** (#cb30e0 fill / #8a2ea3 text): cancel requests.
 
 ### Named Rules
-**The State Owns Color Rule.** Green, orange, red and purple mean request state and nothing else. Never use them for decoration or categories.
-**The Solid Red Rule.** White text sits on `--red-fill` (#d70015), never on the tint-friendly `--red`, which is too light in dark mode.
+**The Glass Is Chrome Rule.** Glass is for things that float above content (navigation, toolbars, sheets, menus, toasts). Content — balances, rows, cards, forms — always sits on a solid surface.
+**The Two Shades Rule.** Each system color has a vivid shade for fills and dots and a darker shade for text. Never set text in the vivid shade.
 
 ## Typography
 
-**Display / Body Font:** the platform system stack (SF Pro / PingFang TC / Noto Sans TC / Microsoft JhengHei).
-**Character:** one family, hierarchy by size and weight only — the way the OS does it.
+**Font:** the platform system stack (SF Pro / PingFang TC / Noto Sans TC / Microsoft JhengHei). One family; hierarchy by size and weight.
 
 ### Hierarchy
-- **Large Title** (700, 34px, 1.15, -0.025em): page titles and the greeting. 30px on mobile.
-- **Hero Numbers** (700, 40px / 28px): remaining hours on the dashboard and the apply-sheet tally, tabular numerals.
-- **Title 2/3** (700, 22px / 20px): section headers, card types, calendar month.
-- **Headline** (600, 17px): row titles, sheet titles.
-- **Body** (400, 17px, 1.47): default text.
-- **Subhead / Footnote** (15px / 13px): secondary lines, field labels (600), legends.
+- **Large Title** (750, 34px, -0.03em): page titles and the greeting; 32px on mobile.
+- **Hero Number** (750, 44px / 28px): remaining hours in widgets and the apply-sheet tally; tabular numerals.
+- **Title 3** (700, 20px): section headers.
+- **Headline / Body** (600 / 400, 17px): row titles / default text.
+- **Subhead / Footnote** (15px / 13px 600): secondary lines, field labels.
 
 ### Named Rules
-**The Hours Are Words Rule.** Quantities are always written with their unit in plain language — 「24 小時」「等於 3 天」 — never a bare number.
+**The Hours Are Words Rule.** Quantities always carry their unit in plain words: 「24 小時」「等於 3 天」.
 
 ## Layout
 
-Desktop: fixed 248px translucent sidebar; content column centered in the remaining width, max ~1080px, 40px top padding. Sections are 36px apart; a section header sits 8px above its grouped list. Below 760px the sidebar becomes a bottom tab bar (52px items, labels 11px), the user avatar moves to the top-right, and multi-column strips stack. Calendar: 7-column grid with a 300px day panel (stacks under 1100px).
+Desktop: the sidebar floats 10px inside the window (248px wide, 26px radius); content is centered in the remaining width (max ~1080px), 44px from the top. Sections are 40px apart. Below 760px the sidebar becomes a floating glass tab-bar capsule 12px above the bottom edge, with a separate 64px round glass-prominent ＋ (申請請假) beside it; the avatar becomes a small glass circle top-right; header 申請 buttons hide (`.only-desktop`).
 
 ## Elevation & Depth
 
-Mostly tonal: surfaces separate by white-on-gray, not by shadows. Resting surfaces carry a barely-there raise; only floating things (sheets, menus, toasts) get a real shadow.
-
-### Shadow Vocabulary
-- **Raise** (`0 1px 2px rgba(0,0,0,.05), 0 2px 8px -2px rgba(0,0,0,.06)`): grouped lists, inputs, type tiles.
-- **Float** (`0 12px 40px -8px rgba(0,0,0,.22), 0 2px 8px rgba(0,0,0,.06)`): sheets, user menu, toasts.
-
-Translucency (`backdrop-filter: saturate(180%) blur(20–30px)`) is used only on chrome that content scrolls under: sidebar/tab bar, sheet bars and footers, menus, toasts.
+Two layers. Content surfaces rest with a barely-there raise (`0 1px 2px rgba(20,30,60,.04), 0 4px 16px -6px rgba(20,30,60,.08)`). The glass layer floats: specular top rim (`inset 0 1px 0 rgba(255,255,255,.95)`), 0.5px edge, and a soft cool shadow (`0 12px 32px -12px rgba(30,40,80,.22)`). Sheets and menus add the float shadow (`0 24px 60px -16px rgba(20,30,60,.3)`).
 
 ## Shapes
 
-Continuous rounded rectangles: 12px for lists and inputs, 16px+ for larger panels, 22px for sheets, full pills for buttons, chips and status. Avatars are circles with two-character given names.
+Concentric corners: window/sheet 32px → surfaces and widgets 26px → type tiles 20px → fields 14px → small chips 10px. Every control is a capsule. Avatars are circles with a soft top highlight.
 
 ## Components
 
 ### Buttons
-- **Shape:** full pill (980px). Heights 40px, large 50px.
-- **Primary:** Firm Blue fill, white text. **Tinted:** blue at 10% with blue text. **Gray:** fill-gray for secondary actions. **Plain:** text-only blue (sheet bar 取消/完成). **Danger / Danger-solid:** red tint for 撤回申請, solid red fill to confirm.
-- **States:** hover darkens; press scales to 0.97; disabled 40% opacity; loading swaps the icon for a spinner.
+- **Glass-prominent:** accent fill #0071e3, white text, inner specular rim, colored soft shadow. Main action per view.
+- **Glass:** translucent glass with rim, for controls that sit on the glass layer (sheet 取消/完成, icon buttons).
+- **Tinted / Gray / Plain / Danger:** secondary actions on solid surfaces.
+- **States:** hover deepens; press scales to 0.96 on the lens curve; disabled 38%.
 
-### Grouped list rows
-- White group, 12px radius, rows ≥56px, 16px side padding, hairline separators inset; whole row is the button with a trailing chevron.
+### Segmented control & navigation — the liquid lens
+- Capsule track; the selected option is a raised white lens that slides (340–380ms, `cubic-bezier(.3,.9,.25,1)`) to the new option. The sidebar and tab bar use the same lens, tinted with System Blue.
 
-### Status pill
-- 26px pill with a 6px dot in currentColor on a 12–16% tint of the state color.
-
-### Inputs
-- White, 12px radius, 48px tall, Raise shadow; focus shows a blue border plus a 4px blue tint ring.
+### Surfaces and rows
+- 26px solid surfaces; rows ≥58px with 18px padding and hairlines inset 18px (66px after an avatar).
 
 ### Sheet
-- Bottom sheet on mobile, centered floating panel ≥760px. Top bar: leading 取消/完成, centered title, translucent. Optional sticky footer for the primary action. Esc and backdrop close; focus is trapped and restored.
-
-### Navigation
-- Sidebar items 42px, accent-colored icons, active item on a gray fill; approver-only 審核 section with a red count badge. Mobile tab bar with the same items.
+- Floating glass panel with 32px corners on all sides, inset 8px from the screen on mobile, centered on desktop. Glass capsule bar buttons; the primary action lives in a floating glass footer capsule.
 
 ### Journey (signature)
-- Ordered list of stops: avatar circle (34–44px), name, short note. Done stops get a green check badge and a green rail behind them; the current stop has an orange ring pulsing outward (2.2s); rejected stops get a red ✕ badge; future stops are desaturated. The viewer is always labeled 「你」. Used on the dashboard, record detail, apply preview and approval cards.
+- Avatars on a 5px capsule rail; completed segments glow green; the current stop has an orange ring pulsing outward; the viewer is labeled 「你」.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** show the Journey anywhere a request appears, and say in words who it is waiting on (「等林主管審核」).
-- **Do** show consequences before commitment: hours, remaining balance after, and the approval path live in the apply sheet.
-- **Do** warn inline with tinted notices (orange for advisories, red for blocks) and keep the submit button honest (disabled when blocked).
+- **Do** keep glass to chrome and content on solid surfaces.
+- **Do** use capsules for every control and concentric radii for nested containers.
+- **Do** show the Journey wherever a request appears and say in words who it waits on.
 - **Do** keep body text ≥16px and controls ≥40px tall.
 
 ### Don't:
-- **Don't** use rings or sparklines for balances; use the horizontal meter (blue used, striped orange pending).
-- **Don't** open a modal on top of a sheet; confirm inline.
-- **Don't** put white text on the light `--red` or `--accent` text tokens in dark mode; use the fill tokens.
+- **Don't** put readable text directly on the ambient bloom or on glass without a solid backing behind long text.
+- **Don't** set text in the vivid system colors; use the text shades.
+- **Don't** return to flat gray grouped lists with hairline-bordered sidebars (that is v1, tag `v1-classic`).
 - **Don't** add a second accent color.

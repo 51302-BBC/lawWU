@@ -10,18 +10,20 @@ related_targets: []
 Mode: Operate. Build path: code-led (Operate surface).
 
 Audience & job: firm staff at office desktops (some older) file leave in under a minute and always know who it waits on; supervisors clear an approval queue with full context (deputy, team overlap, busy season).
-Constraints: Traditional Chinese, conversational copy; body ≥16px; AA contrast; keyboard-operable sheets; light/dark follow system; reduced motion.
+Constraints: Traditional Chinese, conversational copy; body ≥16px; AA contrast on all text; keyboard-operable sheets; light/dark follow system; reduced motion AND reduced transparency honored.
+
+History: v1 (tag v1-classic) used the 2018-era iOS idiom (flat gray grouped lists, opaque sidebar). User asked for a version based on the current iPhone / Mac design (Liquid Glass, iOS 26–27 / macOS 26–27).
 
 ## Direction contract
 
-THESIS: Leave as a journey, not a form. Every request is shown as the path it travels — you → 林主管 → 王經理 — with the current stop alive, so "who is it waiting on?" is never a question. Refuses the ERP default of a status column in a dense table.
+THESIS: Leave as a journey, not a form — now on a Liquid Glass layer. Navigation and actions float as glass above solid, legible content, so the task is always in front and the chrome never competes. Refuses both the ERP status table and the 2018 flat-gray grouped-list look.
 
-OWN-WORLD: macOS/iOS system idiom. Grouped background #f5f5f7 (dark #000/#1c1c1e), white inset-grouped lists with hairline separators, translucent sidebar with vibrancy, system font stack (SF / PingFang TC), accent #0066cc (text-safe Apple blue), semantic green #248a3d / orange #c93400 / red #d70015 as tinted pills. Large-title headers (34px bold), 17px body, 12–14px radii, soft offset shadows only on floating sheets.
+OWN-WORLD: iOS 27 / macOS 27 system idiom. Window ground #f2f2f7 with faint ambient color blooms (blue/teal/lilac at ≤10%) that the glass refracts; dark #000 with deep indigo blooms. Floating glass chrome: translucent white 60% (dark #1c1c1e 55%), 24px blur + saturate 180%, 0.5px light rim, inset specular top highlight. Content surfaces are solid white (#fff / dark #1c1c1e) with 26px concentric radii. iOS 26 system colors as fills: blue #0088ff, green #34c759, orange #ff8d28, red #ff383c, purple #cb30e0; text-safe darker shades for colored text. Capsule everything that is a control.
 
-STORY: The employee lands, sees remaining 特休 hours in words and each in-flight request's journey; taps 申請請假, a sheet rises, picks a type, time and deputy while the hours, remaining balance and approval path update live; submits and sees the journey begin. A supervisor sees a badge, opens 待審核, reads each request with deputy and overlap context, approves in one click or returns with a reason.
+STORY: The employee lands in a window whose sidebar floats as a glass pane; sees remaining 特休 hours as a big number and each in-flight request's journey; presses the glass-prominent 申請請假 capsule, a floating glass sheet rises with rounded corners on all sides; type, time and deputy update hours, balance and approval path live; submits and sees the journey begin. A supervisor sees a badge on the glass sidebar, opens 待審核, reads each request with deputy and overlap context, approves in one click or returns with a reason.
 
-FIRST VIEWPORT: Desktop: 240px translucent sidebar (app name, nav: 總覽/我的紀錄/行事曆, then 審核 section for approvers with count badge; user menu at bottom). Content: large title greeting「午安，佳穎」+ date; primary 申請請假 button top-right of title row; row of leave-balance tiles as one grouped strip (特休 large, 事假, 病假, others behind 全部假別); below, 「進行中」 grouped list where each row carries the journey line. Mobile: bottom tab bar, same content stacked.
+FIRST VIEWPORT: Desktop: floating glass sidebar inset 10px from the window edges (radius 26px, 248px wide): app name, nav capsules 總覽/我的紀錄/行事曆, 審核 section for approvers with count badge, user chip at the bottom. Content: large title greeting「午安，佳穎」+ date; glass-prominent 申請請假 capsule top-right of the title row; balance strip as one solid 26px-radius surface (特休 large, 事假, 病假, 全部假別); below, 「進行中的假單」 surface where each row carries the journey line. Mobile: floating glass tab-bar capsule inset 16px from the bottom with a separate round glass "+" button beside it for 申請請假; avatar as a small glass circle top-right.
 
-FORM: pinned direction (Apple-style humane UI), Operate mode with standard web controls. Signature move: the Journey line — a horizontal track of named avatars with connecting rail, the active stop pulsing softly, reused in apply-sheet preview, dashboard rows, record detail and approval cards. seed: none (pinned) — 「有 apple 風格的人性化 UI/UX 設計」
+FORM: pinned direction (user: 「參考現在 iphone / MAC 的設計再出一版」 = Liquid Glass), Operate mode with standard web controls. Signature move: the liquid selection — the selected capsule (nav item, segmented thumb) is a raised glass lens that slides between options; plus the Journey line restyled as avatars on a glass rail. seed: none (pinned) — 「參考現在 iphone / MAC 的設計再出一版」
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

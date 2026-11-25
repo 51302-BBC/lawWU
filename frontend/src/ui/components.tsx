@@ -4,6 +4,7 @@ import {
   useContext,
   useEffect,
   useId,
+  useLayoutEffect,
   useRef,
   useState,
   type ButtonHTMLAttributes,
@@ -139,8 +140,27 @@ export function Segmented<T extends string>({ options, value, onChange, label }:
   onChange: (v: T) => void
   label: string
 }) {
+  const trackRef = useRef<HTMLDivElement>(null)
+  const [lens, setLens] = useState<{ x: number; w: number; ready: boolean }>({ x: 0, w: 0, ready: false })
+  useLayoutEffect(() => {
+    const track = trackRef.current
+    const on = track?.querySelector<HTMLElement>('[aria-pressed="true"]')
+    if (!on) return
+    const measure = () => setLens((l) => ({ x: on.offsetLeft, w: on.offsetWidth, ready: l.w > 0 }))
+    measure()
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(measure) : null
+    ro?.observe(track!)
+    return () => ro?.disconnect()
+  }, [value, options.length])
+
   return (
-    <div className="seg" role="group" aria-label={label}>
+    <div className="seg" role="group" aria-label={label} ref={trackRef}>
+      <span
+        className="seg__thumb"
+        aria-hidden="true"
+        data-ready={lens.ready}
+        style={{ ['--x' as string]: `${lens.x}px`, ['--w' as string]: `${lens.w}px` }}
+      />
       {options.map((o) => (
         <button
           key={o.value}

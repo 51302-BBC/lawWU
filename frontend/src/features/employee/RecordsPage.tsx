@@ -52,7 +52,7 @@ export function RecordsPage() {
           <h1 className="page-title">我的紀錄</h1>
           <p className="page-sub">所有申請過的假單，點一下看進度或撤回</p>
         </div>
-        <Button variant="tinted" icon="plus" onClick={() => navigate('/apply')}>
+        <Button variant="tinted" icon="plus" className="only-desktop" onClick={() => navigate('/apply')}>
           申請請假
         </Button>
       </header>

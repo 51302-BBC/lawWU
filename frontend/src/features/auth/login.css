@@ -8,21 +8,33 @@
 }
 .login__panel {
   width: 100%;
-  max-width: 400px;
+  max-width: 440px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 40px 32px 28px;
+  border-radius: var(--r-window);
   text-align: center;
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-specular), 0 0 0 0.5px var(--glass-edge), var(--shadow-float);
+}
+@media (max-width: 480px) {
+  .login__panel {
+    padding: 32px 20px 22px;
+  }
 }
 .login__icon {
   display: grid;
   place-items: center;
-  width: 72px;
-  height: 72px;
-  border-radius: 18px;
-  background: linear-gradient(180deg, #3a8dff, #0066cc);
+  width: 76px;
+  height: 76px;
+  border-radius: 20px;
+  background: linear-gradient(160deg, #3aa0ff 0%, #0071e3 55%, #0058c8 100%);
   color: #fff;
-  box-shadow: 0 8px 24px -8px rgba(0, 102, 204, 0.55), 0 1px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, 0.5), inset 0 -1px 0 rgba(0, 0, 0, 0.15),
+    0 12px 28px -10px rgba(0, 113, 227, 0.65);
   margin-bottom: 22px;
 }
 .login__title {
@@ -42,18 +54,18 @@
   gap: 16px;
 }
 .login__fields {
-  border-radius: var(--r-md);
+  border-radius: var(--r-lg);
   background: var(--bg-elevated);
-  box-shadow: var(--shadow-raise), 0 0 0 1px var(--separator);
+  box-shadow: 0 0 0 0.5px var(--separator), var(--shadow-raise);
   overflow: hidden;
   text-align: left;
   transition: box-shadow var(--dur);
 }
 .login__fields:focus-within {
-  box-shadow: 0 0 0 1px var(--accent), 0 0 0 4px var(--accent-tint);
+  box-shadow: 0 0 0 2px var(--accent-vivid), 0 0 0 6px var(--accent-tint);
 }
 .login__fields[data-error] {
-  box-shadow: 0 0 0 1px var(--red), 0 0 0 4px var(--red-tint);
+  box-shadow: 0 0 0 2px var(--red-vivid), 0 0 0 6px var(--red-tint);
 }
 .login__fields.is-shaking {
   animation: shake 420ms var(--ease-out);
@@ -122,9 +134,9 @@
 .login__demo-list {
   margin-top: 10px;
   padding: 6px;
-  border-radius: var(--r-md);
+  border-radius: var(--r-lg);
   background: var(--bg-elevated);
-  box-shadow: var(--shadow-raise);
+  box-shadow: 0 0 0 0.5px var(--separator);
   text-align: left;
   animation: fade-in 200ms var(--ease-out);
 }
