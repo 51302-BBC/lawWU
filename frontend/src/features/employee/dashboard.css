@@ -1,4 +1,4 @@
-/* ───────── Balance strip — mission stats: huge numerals over tracked caps ───────── */
+/* ───────── Balance strip — a title per balance, the figure beneath it ───────── */
 .balances.group {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr auto;
@@ -18,26 +18,30 @@
 .bal:first-child {
   padding-left: 0;
 }
+/* The title leads; the figure supports it. */
 .bal__label {
-  order: 2;
-  font-size: var(--t-foot);
-  font-weight: 700;
-  letter-spacing: var(--track-caps);
-  color: var(--label-3);
+  order: 1;
+  font-family: var(--font-display);
+  font-size: var(--t-title3);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--label-2);
 }
 .bal--hero .bal__label {
+  font-size: var(--t-title2);
   color: var(--label);
 }
 .bal__value {
-  order: 1;
+  order: 2;
   font-family: var(--font-display);
-  font-size: 64px;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  line-height: 1;
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.1;
+  color: var(--label-2);
 }
 .bal__value--sm {
-  font-size: 40px;
+  font-size: 24px;
 }
 .bal__words {
   order: 3;
@@ -69,7 +73,7 @@
   margin-left: 0;
 }
 .dot--used {
-  background: #fff;
+  background: var(--ink);
 }
 .dot--pending {
   background: var(--orange-vivid);
@@ -82,7 +86,7 @@
   background: var(--separator);
 }
 .meter__used {
-  background: #fff;
+  background: var(--ink);
 }
 .meter__pending {
   background: var(--orange-vivid);
@@ -161,8 +165,8 @@
 }
 .datechip__d {
   font-family: var(--font-display);
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 22px;
+  font-weight: 600;
 }
 .flight__main {
   display: grid;
@@ -236,9 +240,9 @@
 }
 @media (max-width: 520px) {
   .bal__value {
-    font-size: 52px;
+    font-size: 26px;
   }
   .bal__value--sm {
-    font-size: 30px;
+    font-size: 22px;
   }
 }

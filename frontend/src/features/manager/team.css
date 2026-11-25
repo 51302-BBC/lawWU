@@ -54,9 +54,9 @@
   place-items: center;
   min-width: 26px;
   height: 26px;
-  border-radius: 0;
+  border-radius: var(--r-sm);
   background: var(--red-fill);
-  color: #fff;
+  color: var(--ink);
 }
 .tw__name {
   display: flex;
@@ -69,7 +69,7 @@
 .tw__me {
   margin-left: 6px;
   padding: 1px 7px;
-  border-radius: 0;
+  border-radius: var(--r-sm);
   background: var(--accent-tint);
   color: var(--accent);
   font-size: 12px;
@@ -83,7 +83,7 @@
 .tw__leave {
   width: 100%;
   padding: 6px 8px;
-  border-radius: 0;
+  border-radius: var(--r-sm);
   background: color-mix(in srgb, var(--c) 22%, var(--bg-elevated));
   color: var(--label);
   font-size: var(--t-foot);

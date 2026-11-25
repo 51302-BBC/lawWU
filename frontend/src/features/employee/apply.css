@@ -42,7 +42,7 @@
   display: grid;
   gap: 2px;
   padding: 13px 15px;
-  border-radius: 0;
+  border-radius: var(--r-sm);
   background: var(--bg-elevated);
   box-shadow: var(--shadow-raise), inset 0 0 0 1px transparent;
   cursor: pointer;
@@ -52,7 +52,7 @@
   border-color: var(--rule-strong);
 }
 .type:has(input:focus-visible) {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
   outline-offset: 2px;
 }
@@ -60,8 +60,8 @@
   border: 1px solid var(--separator);
 }
 .type.is-on {
-  background: #fff;
-  border-color: #fff;
+  background: var(--ink);
+  border-color: var(--ink);
   box-shadow: none;
 }
 .type.is-on .type__left {
@@ -71,7 +71,7 @@
   font-weight: 600;
 }
 .type.is-on .type__name {
-  color: #000;
+  color: var(--ground);
 }
 .type__left {
   font-size: var(--t-foot);
@@ -116,7 +116,7 @@
   gap: 16px;
   flex-wrap: wrap;
   padding: 16px 18px;
-  border-radius: 0;
+  border-radius: var(--r-sm);
   background: var(--bg-elevated);
   box-shadow: var(--shadow-raise);
 }
@@ -126,8 +126,8 @@
 }
 .tally__value {
   font-family: var(--font-display);
-  font-size: 40px;
-  font-weight: 700;
+  font-size: 28px;
+  font-weight: 600;
   letter-spacing: 0.01em;
   line-height: 1.15;
   transition: color var(--dur);
@@ -173,7 +173,7 @@
   display: grid;
   gap: 14px;
   padding: 18px 16px 16px;
-  border-radius: 0;
+  border-radius: var(--r-sm);
   background: var(--bg-elevated);
   box-shadow: var(--shadow-raise);
 }

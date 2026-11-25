@@ -68,7 +68,7 @@
   left: 0;
   width: var(--lw, 0px);
   height: 2px;
-  background: #fff;
+  background: var(--ink);
   opacity: var(--lo, 0);
   transform: translateX(var(--lx, 0px));
   transition: transform 520ms var(--ease-lens), width 520ms var(--ease-lens), opacity 200ms, bottom 360ms var(--ease-out);
@@ -112,7 +112,7 @@
   height: 20px;
   padding: 0 5px;
   background: var(--red-fill);
-  color: #fff;
+  color: var(--ink);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0;
@@ -197,15 +197,15 @@
   transition: background var(--dur), color var(--dur);
 }
 .usermenu__item:hover {
-  background: #fff;
-  color: #000;
+  background: var(--ink);
+  color: var(--ground);
 }
 .usermenu__item--danger {
   color: var(--red);
 }
 .usermenu__item--danger:hover {
   background: var(--red-fill);
-  color: #fff;
+  color: var(--ink);
 }
 
 .menu-btn {
@@ -264,7 +264,7 @@
   /* No backdrop-filter here: it would trap the fixed menu inside the bar. */
   .topbar[data-solid] {
     height: 68px;
-    background: #000;
+    background: var(--ground);
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
@@ -316,7 +316,7 @@
     border-bottom: 1px solid var(--separator);
   }
   .nav__item.active {
-    box-shadow: inset 2px 0 0 #fff;
+    box-shadow: inset 2px 0 0 var(--ink);
     padding-left: 14px;
   }
   .nav__index {

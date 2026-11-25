@@ -11,67 +11,70 @@
     'PingFang TC', 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
 
   /* ground + steps of black (depth on black comes from steps and rules, not shadow) */
-  --bg: #000000;
-  --bg-elevated: #0a0a0b;
-  --bg-inset: #121214;
-  --bg-fill: rgba(255, 255, 255, 0.07);
-  --bg-fill-strong: rgba(255, 255, 255, 0.13);
-  --bg-hover: rgba(255, 255, 255, 0.05);
-  --separator: rgba(255, 255, 255, 0.16);
-  --rule: rgba(255, 255, 255, 0.28);
-  --rule-strong: rgba(255, 255, 255, 0.7);
-  --overlay: rgba(0, 0, 0, 0.72);
+  /* softened: a warm graphite, not pure black; off-white ink, not pure white */
+  --ground: #17181b;
+  --ink: #e4e1da;
+  --bg: var(--ground);
+  --bg-elevated: #1d1e22;
+  --bg-inset: #222327;
+  --bg-fill: rgba(228, 225, 218, 0.06);
+  --bg-fill-strong: rgba(228, 225, 218, 0.11);
+  --bg-hover: rgba(228, 225, 218, 0.045);
+  --separator: rgba(228, 225, 218, 0.1);
+  --rule: rgba(228, 225, 218, 0.18);
+  --rule-strong: rgba(228, 225, 218, 0.45);
+  --overlay: rgba(10, 10, 12, 0.6);
 
   /* chrome layer: near-black, lightly blurred (top bar, drawer, menus, toasts) */
-  --glass: rgba(0, 0, 0, 0.78);
-  --glass-strong: rgba(10, 10, 11, 0.94);
-  --glass-edge: rgba(255, 255, 255, 0.14);
+  --glass: rgba(23, 24, 27, 0.82);
+  --glass-strong: rgba(29, 30, 34, 0.96);
+  --glass-edge: rgba(228, 225, 218, 0.1);
   --glass-specular: inset 0 0 0 0 transparent;
   --glass-shadow: none;
   --glass-blur: blur(18px);
 
-  /* text: white and three steps of it (all ≥ 4.5:1 on #000 except --label-4, which is ≥ 4.5:1 too) */
-  --label: #ffffff;
-  --label-2: rgba(255, 255, 255, 0.82);
-  --label-3: rgba(255, 255, 255, 0.64);
-  --label-4: rgba(255, 255, 255, 0.5);
+  /* text: off-white ink and three steps of it (all ≥ 4.5:1 on --ground) */
+  --label: var(--ink);
+  --label-2: rgba(228, 225, 218, 0.78);
+  --label-3: rgba(228, 225, 218, 0.6);
+  --label-4: rgba(228, 225, 218, 0.5);
 
   /* the light: white is the accent */
-  --accent-vivid: #ffffff;
-  --accent: #ffffff;
-  --accent-hover: #ffffff;
-  --accent-tint: rgba(255, 255, 255, 0.1);
-  --accent-fill: #ffffff;
-  --accent-fill-hover: #e6e6e6;
-  --on-accent: #000000;
+  --accent-vivid: var(--ink);
+  --accent: var(--ink);
+  --accent-hover: #f0ede6;
+  --accent-tint: rgba(228, 225, 218, 0.09);
+  --accent-fill: var(--ink);
+  --accent-fill-hover: #d4d1ca;
+  --on-accent: var(--ground);
 
   /* request state — one marker color each, legible on black */
-  --green-vivid: #3ddc84;
-  --green: #5fe39a;
+  --green-vivid: #5cc98a;
+  --green: #7dd3a0;
   --green-tint: rgba(61, 220, 132, 0.12);
-  --orange-vivid: #ffa31a;
-  --orange: #ffb547;
+  --orange-vivid: #e8a04a;
+  --orange: #edb46e;
   --orange-tint: rgba(255, 163, 26, 0.12);
-  --red-vivid: #ff4d42;
-  --red: #ff7a70;
+  --red-vivid: #e8675d;
+  --red: #ec8a82;
   --red-tint: rgba(255, 77, 66, 0.13);
-  --red-fill: #d92d20;
-  --purple-vivid: #b98cff;
-  --purple: #c9a6ff;
+  --red-fill: #c2463c;
+  --purple-vivid: #ad93e0;
+  --purple: #bfa9e8;
   --purple-tint: rgba(185, 140, 255, 0.13);
-  --gray-tint: rgba(255, 255, 255, 0.08);
+  --gray-tint: rgba(228, 225, 218, 0.07);
 
-  /* shape — square. Every radius is 0; only the status marker is a dot. */
-  --r-sm: 0px;
-  --r-md: 0px;
-  --r-lg: 0px;
-  --r-xl: 0px;
-  --r-window: 0px;
-  --shadow-float: 0 0 0 1px rgba(255, 255, 255, 0.14);
+  /* shape — eased corners: still architectural, no longer cutting */
+  --r-sm: 6px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-xl: 16px;
+  --r-window: 14px;
+  --shadow-float: 0 0 0 1px rgba(228, 225, 218, 0.1), 0 18px 48px rgba(0, 0, 0, 0.35);
   --shadow-raise: none;
 
   /* type scale */
-  --t-hero: clamp(44px, 6vw, 76px);
+  --t-hero: clamp(36px, 4.6vw, 58px);
   --t-large: 40px;
   --t-title1: 30px;
   --t-title2: 22px;
@@ -81,8 +84,8 @@
   --t-callout: 16px;
   --t-sub: 15px;
   --t-foot: 13px;
-  --track-caps: 0.14em;
-  --track-title: 0.06em;
+  --track-caps: 0.08em;
+  --track-title: 0.03em;
 
   /* motion: long, calm departures */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -113,7 +116,7 @@
 
 html {
   -webkit-text-size-adjust: 100%;
-  background: #000;
+  background: var(--ground);
 }
 
 body {
@@ -162,17 +165,17 @@ button {
 }
 
 ::selection {
-  background: #fff;
-  color: #000;
+  background: var(--ink);
+  color: var(--ground);
 }
 
 input,
 textarea {
-  caret-color: #fff;
+  caret-color: var(--ink);
 }
 
 :focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
 }
 
@@ -183,7 +186,7 @@ a {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.24) transparent;
+  scrollbar-color: rgba(228, 225, 218, 0.2) transparent;
 }
 
 .num {

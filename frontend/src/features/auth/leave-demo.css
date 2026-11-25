@@ -12,13 +12,13 @@
     top: 40px;
     left: 40px;
     width: 780px;
-    border-radius: 0;
-    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06), 0 0 0 1px rgb(255 255 255 / 0.14);
+    border-radius: var(--r-sm);
+    box-shadow: 0 0 0 1px rgb(255 255 255 / 0.1), 0 24px 60px rgb(0 0 0 / 0.35);
   }
 
   .ld-app {
     min-height: 480px;
-    background: #0a0a0b;
+    background: #1c1d21;
   }
 
   .ld-top {
@@ -34,7 +34,7 @@
     display: flex;
     align-items: center;
     gap: 9px;
-    color: #fff;
+    color: var(--ink);
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.26em;
@@ -67,7 +67,7 @@
     right: 0;
     bottom: -23px;
     height: 2px;
-    background: #fff;
+    background: var(--ink);
   }
 
   .ld-body {
@@ -76,7 +76,7 @@
 
   .ld-title {
     padding-bottom: 16px;
-    color: #fff;
+    color: var(--ink);
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -116,7 +116,7 @@
   }
 
   .ld-date__d {
-    color: #fff;
+    color: var(--ink);
     font-size: 18px;
     font-weight: 700;
     font-variant-numeric: tabular-nums;
@@ -130,7 +130,7 @@
   }
 
   .ld-msg {
-    color: #fff;
+    color: var(--ink);
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 0.04em;
@@ -193,7 +193,7 @@
 
   .ld-way[data-on] .ld-way__box {
     background: #3ddc84;
-    color: #000;
+    color: var(--ground);
   }
 
   .ld-way[data-on] .ld-way__box::after {
@@ -210,7 +210,7 @@
   /* status pill: square, ruled, the reference's tracked caps */
   .ld-badge {
     justify-self: start;
-    border-radius: 0;
+    border-radius: var(--r-sm);
     letter-spacing: 0.1em;
     font-weight: 700;
   }
